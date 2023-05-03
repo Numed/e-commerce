@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
+
 export const SpinnerContainer = styled.div`
   width: 48px;
   height: 48px;
-  border: 5px dotted #fff;
+  border: 5px dotted #000;
   border-radius: 50%;
   display: inline-block;
   position: relative;

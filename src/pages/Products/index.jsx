@@ -1,7 +1,7 @@
 import Layout from "../../features/Layout";
 
-const MainPage = () => {
+const ProductsPage = () => {
   return <Layout></Layout>;
 };
 
-export default MainPage;
+export default ProductsPage;

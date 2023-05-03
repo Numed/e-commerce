@@ -75,7 +75,8 @@ export const FormInput = styled(Field)`
   border: 1px solid #dadada;
   border-radius: 3px;
   margin-right: 15px;
-  padding: 10px 90px;
+  padding: 10px;
+  width: 345px;
 `;
 
 export const FormSubmitBtn = styled.button`

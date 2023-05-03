@@ -3,11 +3,11 @@ import HeaderNav from "../../components/HeaderNav";
 import FooterNav from "../../components/FooterNav";
 import Footer from "../../components/Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, navTitle }) => {
   return (
     <>
       <Header />
-      <HeaderNav />
+      <HeaderNav title={navTitle} />
       {children}
       <FooterNav />
       <Footer />

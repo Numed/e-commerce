@@ -1,13 +1,23 @@
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { MainPage } from "../../pages";
+
+import Loader from "../../components/Loader";
+const Main = lazy(() => import("../../pages/Main"));
+const Products = lazy(() => import("../../pages/Products"));
+const About = lazy(() => import("../../pages/About"));
+const Error = lazy(() => import("../../pages/404"));
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/*" element={<Error />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 };

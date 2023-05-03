@@ -12,3 +12,38 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal{
+  position: absolute;
+  top: 50%;
+}
+
+ .swiper-pagination{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 130px;
+}
+
+.swiper-pagination-bullet{
+  width: 16px !important;
+  height: 16px !important;
+  color: #6f6f6f;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  transform: scale(0.75);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(111, 111, 111);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #393939;
+}
