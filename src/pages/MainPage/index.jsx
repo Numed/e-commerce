@@ -1,12 +1,7 @@
-import Header from "../../components/Header";
-import HeaderNav from "../../components/HeaderNav";
+import Layout from "../../features/Layout";
+
 const MainPage = () => {
-  return (
-    <>
-      <Header />
-      <HeaderNav />
-    </>
-  );
+  return <Layout></Layout>;
 };
 
 export default MainPage;

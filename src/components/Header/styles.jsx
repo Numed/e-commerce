@@ -11,7 +11,6 @@ export const HeaderContainer = styled.header`
   justify-content: space-around;
   align-items: center;
   padding-top: 55px;
-  border-bottom: 1px solid #dadada;
 `;
 
 export const Logo = styled.img`

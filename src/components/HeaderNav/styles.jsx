@@ -8,6 +8,8 @@ export const HeaderNavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 25px 175px;
+  border-bottom: 1px solid #dadada;
+  border-top: 1px solid #dadada;
 `;
 
 export const Title = styled.h3`
