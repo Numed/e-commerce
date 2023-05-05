@@ -68,7 +68,7 @@ const Footer = () => {
         <LinksSection>
           <LinksNav>
             <StyledLink to="/login">Login</StyledLink>
-            <StyledLink to="/sign-up">Register</StyledLink>
+            <StyledLink to="/register">Register</StyledLink>
           </LinksNav>
           <LinksNav>
             <StyledLink to="/">Gift Certificates</StyledLink>

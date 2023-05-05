@@ -12,12 +12,21 @@ export const AboutContainer = styled.section`
   padding: 0 175px;
 `;
 
+export const AboutInner = styled.div`
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  width: 100%;
+`;
+
 export const AboutImage = styled.div`
   background: url(${bg}) no-repeat center;
   background-size: cover;
   width: 100%;
   height: 500px;
-  margin-bottom: 40px;
+  margin: 0 40px 40px 0;
 `;
 
 export const AboutTextContainer = styled.div`
@@ -33,6 +42,7 @@ export const AboutText = styled.p`
   line-height: 27px;
   color: #6f6f6f;
   margin-bottom: 20px;
+  max-width: 865px;
 
   & > span {
     font-weight: 700;

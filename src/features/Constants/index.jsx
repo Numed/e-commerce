@@ -18,13 +18,16 @@ export const pathes = [
   { title: "About", path: "/about" },
   { title: "Search", path: "/search" },
   { title: "Cart", path: "/cart" },
+  { title: "Contact", path: "/contact" },
+  { title: "Login", path: "/login" },
+  { title: "Register", path: "/register" },
   { title: "Error", path: "/404" },
 ];
 
 export const navLinks = [
   { id: 1, title: "Products", path: "/products" },
   { id: 2, title: "Brands", path: "/brands" },
-  { id: 3, title: "About", path: "/about" },
+  { id: 3, title: "Information", path: "/info" },
   { id: 4, title: "Search", path: "/search" },
   { id: 5, title: "Cart", path: "/cart" },
 ];

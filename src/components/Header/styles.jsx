@@ -8,9 +8,9 @@ export const HeaderContainer = styled.header`
   height: 100%;
   background: #fff;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 55px;
+  padding: 55px 170px;
 `;
 
 export const Logo = styled.img`

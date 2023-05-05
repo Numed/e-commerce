@@ -1,5 +1,7 @@
+import PageSection from "../../components/PageSection";
 import {
   AboutContainer,
+  AboutInner,
   AboutImage,
   AboutText,
   AboutTextContainer,
@@ -8,7 +10,10 @@ import {
 const AboutContent = () => {
   return (
     <AboutContainer>
-      <AboutImage />
+      <AboutInner>
+        <PageSection />
+        <AboutImage />
+      </AboutInner>
       <AboutTextContainer>
         <AboutText>
           We'd like to thank <span>Mr and Mrs White</span> for letting us use

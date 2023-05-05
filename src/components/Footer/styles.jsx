@@ -86,6 +86,11 @@ export const FormSubmitBtn = styled.button`
   padding: 10px 25px;
   color: #ffffff;
   cursor: pointer;
+  letter-spacing: 1.4px;
+  font-family: "Karla";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 export const InputError = styled.span`
