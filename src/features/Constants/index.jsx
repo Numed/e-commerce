@@ -25,11 +25,11 @@ export const pathes = [
 ];
 
 export const navLinks = [
-  { id: 1, title: "Products", path: "/products" },
-  { id: 2, title: "Brands", path: "/brands" },
-  { id: 3, title: "Information", path: "/info" },
-  { id: 4, title: "Search", path: "/search" },
-  { id: 5, title: "Cart", path: "/cart" },
+  { id: 1, title: "Products", path: "/products", isButton: false },
+  { id: 2, title: "Brands", path: "/brands", isButton: true },
+  { id: 3, title: "Information", path: "/info", isButton: false },
+  { id: 4, title: "Search", path: "/search", isButton: true },
+  { id: 5, title: "Cart", path: "/cart", isButton: true },
 ];
 
 export const headerImages = [

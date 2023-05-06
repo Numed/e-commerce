@@ -11,6 +11,7 @@ const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
 
 const App = () => {
+  
   return (
     <Router>
       <Suspense fallback={<Loader />}>

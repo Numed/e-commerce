@@ -47,3 +47,15 @@ export const StyledLink = styled(Link)`
     opacity: 1;
   }
 `;
+
+export const LinkButton = styled.a`
+  text-decoration: none;
+  color: #393939;
+  opacity: 0.9;
+  transition: all 0.2s linear;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+`;

@@ -16,12 +16,22 @@ export const CardsSection = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 120px;
+  padding: 0 150px;
+  margin-bottom: 40px;
 `;
 
 export const StyledMasonry = styled(Masonry)`
+  event-pointer: none;
   & > div {
     gap: 120px !important;
+
+    &:nth-child(even) > div {
+      height: 20%;
+    }
+
+    &:nth-child(odd) > div {
+      height: 25%;
+    }
   }
 `;
 
@@ -31,6 +41,31 @@ export const Card = styled.div`
   padding: 0 20px 20px 20px;
   background: #fff;
   cursor: pointer;
+`;
+
+export const CardMask = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
+export const CardActions = styled.div`
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+`;
+
+export const ActionButton = styled.a`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #ffffff;
 `;
 
 export const CardImg = styled.img`

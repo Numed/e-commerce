@@ -4,24 +4,27 @@ import { Formik } from "formik";
 import {
   FooterContainer,
   FooterDataContainer,
-  FormInput,
-  FormLabel,
-  LabelInner,
-  FormSection,
-  FormSubmitBtn,
   FormSubtitle,
   FormTitle,
-  InputError,
   CopyRights,
   IconsContainer,
-  InputContainer,
   StyledLink,
   AdressInner,
   PhoneNumber,
   DataSection,
   LinksNav,
   LinksSection,
+  FormSection,
 } from "./styles";
+
+import {
+  InputError,
+  InputContainer,
+  LabelInner,
+  FormInput,
+  FormLabel,
+  BtnSubmit,
+} from "../../styles";
 
 import { FooterSchema } from "./validateSchema";
 
@@ -52,7 +55,7 @@ const Footer = () => {
                   ) : null}
                   <FormInput type="email" name="email" required />
                 </LabelInner>
-                <FormSubmitBtn type="submit">{">"}</FormSubmitBtn>
+                <BtnSubmit type="submit">{">"}</BtnSubmit>
               </InputContainer>
             </FormSection>
           )}

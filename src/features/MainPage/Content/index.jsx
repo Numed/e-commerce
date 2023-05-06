@@ -11,9 +11,16 @@ import {
   CardsSection,
   SectionChapter,
   StyledMasonry,
+  CardMask,
+  ActionButton,
+  CardActions,
 } from "./styles";
+import { useHttp } from "../../../hooks/http.hooks";
 
 const Content = () => {
+  const { useHover } = useHttp();
+  const [hoverRef, isHovered] = useHover();
+
   return (
     <>
       <SectionChapter>Featured Products</SectionChapter>
@@ -22,8 +29,17 @@ const Content = () => {
           <StyledMasonry gutter="10px">
             {mainCardsList.map(({ id, image, title, brand, price, alt }) => {
               return (
-                <Card key={id}>
-                  <CardImg src={image} alt={alt} />
+                <Card key={id} ref={hoverRef}>
+                  {isHovered ? (
+                    <CardMask>
+                      <CardActions>
+                        <ActionButton>Choose option</ActionButton>
+                      </CardActions>
+                      <CardImg src={image} alt={alt} />
+                    </CardMask>
+                  ) : (
+                    <CardImg src={image} alt={alt} />
+                  )}
                   <CardTextContainer>
                     <CardBrand>{brand}</CardBrand>
                     <CardTitle>{title}</CardTitle>

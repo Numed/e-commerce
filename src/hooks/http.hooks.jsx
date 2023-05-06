@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 
 export const useHttp = () => {
   const request = useCallback(
@@ -28,26 +28,33 @@ export const useHttp = () => {
     },
     []
   );
+
   const useHover = () => {
     const [value, setValue] = useState(false);
-    const ref = useRef(null);
-    const handleMouseOver = () => setValue(true);
-    const handleMouseOut = () => setValue(false);
-    useEffect(
-      () => {
-        const node = ref.current;
-        if (node) {
-          node.addEventListener("mouseover", handleMouseOver);
-          node.addEventListener("mouseout", handleMouseOut);
-          return () => {
-            node.removeEventListener("mouseover", handleMouseOver);
-            node.removeEventListener("mouseout", handleMouseOut);
-          };
+
+    const handleMouseOver = useCallback(() => setValue(true), []);
+    const handleMouseOut = useCallback(() => setValue(false), []);
+
+    const ref = useRef();
+
+    const callbackRef = useCallback(
+      (node) => {
+        if (ref.current) {
+          ref.current.removeEventListener("mouseover", handleMouseOver);
+          ref.current.removeEventListener("mouseout", handleMouseOut);
+        }
+
+        ref.current = node;
+
+        if (ref.current) {
+          ref.current.addEventListener("mouseover", handleMouseOver);
+          ref.current.addEventListener("mouseout", handleMouseOut);
         }
       },
-      [ref.current] // Recall only if ref changes
+      [handleMouseOver, handleMouseOut]
     );
-    return [ref, value];
+
+    return [callbackRef, value];
   };
 
   return { useHover, request };

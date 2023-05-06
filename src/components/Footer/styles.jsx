@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Field } from "formik";
 import { Link } from "react-router-dom";
 
 export const FooterContainer = styled.div`
@@ -42,61 +41,6 @@ export const FormSubtitle = styled.h4`
   line-height: 27px;
   color: #6f6f6f;
   margin-bottom: 25px;
-`;
-
-export const FormLabel = styled.label`
-  font-family: "Karla";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 23px;
-  letter-spacing: 0.7px;
-  color: #6f6f6f;
-  margin-bottom: 5px;
-`;
-
-export const InputContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-`;
-
-export const LabelInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
-
-export const FormInput = styled(Field)`
-  background: #ffffff;
-  border: 1px solid #dadada;
-  border-radius: 3px;
-  margin-right: 15px;
-  padding: 10px;
-  width: 345px;
-`;
-
-export const FormSubmitBtn = styled.button`
-  background: #393939;
-  border: 1px solid #393939;
-  border-radius: 3px;
-  padding: 10px 25px;
-  color: #ffffff;
-  cursor: pointer;
-  letter-spacing: 1.4px;
-  font-family: "Karla";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-`;
-
-export const InputError = styled.span`
-  font-size: 12px;
-  color: #e63946;
-  letter-spacing: 1.1px;
 `;
 
 export const DataSection = styled.div`

@@ -57,6 +57,18 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const LinkButton = styled.a`
+  text-decoration: none;
+  color: #393939;
+  opacity: 0.8;
+  transition: all 0.2s linear;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 export const StyledSwiper = styled(Swiper)`
   height: 650px;
 `;

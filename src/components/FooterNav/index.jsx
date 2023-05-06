@@ -4,6 +4,7 @@ import {
   StyledLink,
   NavList,
   ListItem,
+  LinkButton,
 } from "./styles";
 import { navLinks } from "../../features/Constants";
 
@@ -12,10 +13,14 @@ const FooterNav = () => {
     <FooterNavContainer>
       <LinksContainer>
         <NavList>
-          {navLinks.map(({ id, title, path }) => {
+          {navLinks.map(({ id, title, path, isButton }) => {
             return (
               <ListItem key={id}>
-                <StyledLink to={path}>{title}</StyledLink>
+                {isButton === true ? (
+                  <LinkButton>{title}</LinkButton>
+                ) : (
+                  <StyledLink to={path}>{title}</StyledLink>
+                )}
               </ListItem>
             );
           })}

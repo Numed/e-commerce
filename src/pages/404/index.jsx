@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Layout from "../../features/Layout";
+import Layout from "../../components/Layout";
 import { ErrorContainer, ErrorText } from "./styles";
 
 const ErrorPage = () => {

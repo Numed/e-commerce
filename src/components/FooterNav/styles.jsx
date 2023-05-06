@@ -40,3 +40,19 @@ export const StyledLink = styled(Link)`
     opacity: 1;
   }
 `;
+
+export const LinkButton = styled.a`
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  line-heigth: 27px;
+  font-weigth: 400;
+  text-decoration: none;
+  color: #393939;
+  opacity: 0.9;
+  transition: all 0.2s linear;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+`;

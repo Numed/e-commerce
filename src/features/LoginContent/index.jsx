@@ -1,22 +1,26 @@
 import { Formik } from "formik";
 
 import {
-  FormInput,
-  FormSection,
-  FormTitle,
-  FormLabel,
   SectionContainer,
   SectionInner,
-  BtnSubmit,
   InfoItem,
   InfoList,
   InfoSection,
   InfoSubtitle,
   InfoTitle,
+  FormSection,
+  FormTitle,
+} from "./styles";
+
+import {
+  InputError,
   InputContainer,
   LabelInner,
-  InputError,
-} from "./styles";
+  FormInput,
+  FormLabel,
+  BtnSubmit,
+} from "../../styles";
+
 import { LoginSchema } from "./validationSchema";
 
 const LoginContent = () => {

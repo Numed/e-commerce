@@ -3,16 +3,20 @@ import { Formik } from "formik";
 import {
   SectionContainer,
   SectionInner,
-  FormInput,
-  FormLabel,
-  FormSubmitBtn,
-  InputContainer,
-  InputError,
-  LabelInner,
   ContentText,
   FormSection,
-  InputGroup,
 } from "./styles";
+
+import {
+  InputError,
+  InputContainer,
+  InputGroup,
+  LabelInner,
+  FormInput,
+  FormLabel,
+  BtnSubmit,
+} from "../../styles";
+
 import PageSection from "../../components/PageSection";
 import { ContactSchema } from "./validationSchema";
 import { FormikTextarea } from "../../helpers";
@@ -120,7 +124,7 @@ const ContactContent = () => {
                   <FormikTextarea name="question" required />
                 </LabelInner>
               </InputContainer>
-              <FormSubmitBtn>Submit Message</FormSubmitBtn>
+              <BtnSubmit>Submit Message</BtnSubmit>
             </FormSection>
           )}
         </Formik>

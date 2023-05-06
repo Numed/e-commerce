@@ -1,6 +1,5 @@
-import Layout from "../../features/Layout";
-
-import AboutContent from "../../features/About";
+import Layout from "../../components/Layout";
+import AboutContent from "../../features/AboutContent";
 
 const About = () => {
   return (
