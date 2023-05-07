@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import { ResponsiveMasonry } from "react-responsive-masonry";
 
-import { mainCardsList } from "../../../features/Constants";
+import { productsList } from "../Constants";
 import {
+  SectionContainer,
   Card,
   CardBrand,
   CardPrice,
@@ -10,14 +11,13 @@ import {
   CardTextContainer,
   CardTitle,
   CardsSection,
-  SectionChapter,
   StyledMasonry,
   CardMask,
   ActionButton,
   CardActions,
 } from "./styles";
 
-const Content = () => {
+const ProductsContent = () => {
   const cardsRef = useRef([]);
   const [isHovered, setHovered] = useState(false);
   const hoveredCard = useRef(null);
@@ -34,12 +34,11 @@ const Content = () => {
   };
 
   return (
-    <>
-      <SectionChapter>Featured Products</SectionChapter>
+    <SectionContainer>
       <CardsSection>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
           <StyledMasonry gutter="10px">
-            {mainCardsList.map(({ id, image, title, brand, price, alt }) => {
+            {productsList.map(({ id, image, title, brand, price, alt }) => {
               return (
                 <Card
                   key={id}
@@ -69,8 +68,8 @@ const Content = () => {
           </StyledMasonry>
         </ResponsiveMasonry>
       </CardsSection>
-    </>
+    </SectionContainer>
   );
 };
 
-export default Content;
+export default ProductsContent;

@@ -1,13 +1,11 @@
 import styled from "styled-components";
+
 import Masonry from "react-responsive-masonry";
 
-export const SectionChapter = styled.span`
-  font-family: "Karla";
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 27px;
-  color: #6f6f6f;
-  margin: 0 0 5px 125px;
+export const SectionContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 40px 0;
 `;
 
 export const CardsSection = styled.section`
@@ -89,8 +87,7 @@ export const ActionButton = styled.a`
 
 export const CardImg = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const CardTextContainer = styled.div`
