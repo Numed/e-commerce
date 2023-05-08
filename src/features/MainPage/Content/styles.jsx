@@ -16,7 +16,7 @@ export const CardsSection = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 150px;
+  padding: 0 120px;
   margin-bottom: 40px;
 `;
 
@@ -46,6 +46,7 @@ export const Card = styled.div`
 export const CardMask = styled.div`
   position: relative;
   transition: all 0.25s linear;
+  height: 100%;
 `;
 
 export const CardActions = styled.div`
@@ -91,6 +92,8 @@ export const CardImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
+  display: block;
 `;
 
 export const CardTextContainer = styled.div`

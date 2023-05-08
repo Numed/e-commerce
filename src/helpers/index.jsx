@@ -1,7 +1,16 @@
-import { useField } from "formik";
-import { FormTextarea } from "../features/Contact/styles";
+import { useState, useMemo, useRef } from "react";
 
-export const FormikTextarea = ({ ...props }) => {
-  const [field] = useField(props);
-  return <FormTextarea {...field} {...props} />;
+export const useHover = () => {
+  const [hovered, setHovered] = useState(false);
+  const hoveredCard = useRef(null);
+
+  const eventHandlers = useMemo(
+    () => ({
+      onMouseOver: (e) => (setHovered(true), (hoveredCard.current = e.target)),
+      onMouseOut: () => (setHovered(false), (hoveredCard.current = null)),
+    }),
+    [setHovered]
+  );
+
+  return [hovered, eventHandlers, hoveredCard];
 };

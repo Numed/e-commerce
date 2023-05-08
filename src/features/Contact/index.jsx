@@ -19,7 +19,7 @@ import {
 
 import PageSection from "../../components/PageSection";
 import { ContactSchema } from "./validationSchema";
-import { FormikTextarea } from "../../helpers";
+import { FormikTextarea } from "../../helpers/formik";
 
 const ContactContent = () => {
   const onSubmit = (data) => {

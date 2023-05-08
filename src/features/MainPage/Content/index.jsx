@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ResponsiveMasonry } from "react-responsive-masonry";
 
 import { mainCardsList } from "../../../features/Constants";
@@ -16,38 +16,27 @@ import {
   ActionButton,
   CardActions,
 } from "./styles";
+import { useHover } from "../../../helpers";
 
 const Content = () => {
   const cardsRef = useRef([]);
-  const [isHovered, setHovered] = useState(false);
-  const hoveredCard = useRef(null);
-
-  const onHover = (target) => {
-    setHovered(true);
-    hoveredCard.current = target;
-    console.log(hoveredCard.current);
-  };
-
-  const removeHover = () => {
-    setHovered(false);
-    hoveredCard.current = null;
-  };
+  // const hoveredCard = useRef(null);
+  const [hovered, eventHandlers, hoveredCard] = useHover();
 
   return (
     <>
       <SectionChapter>Featured Products</SectionChapter>
       <CardsSection>
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <StyledMasonry gutter="10px">
+          <StyledMasonry gutter="30px">
             {mainCardsList.map(({ id, image, title, brand, price, alt }) => {
               return (
                 <Card
                   key={id}
                   ref={(el) => (cardsRef.current[id] = el)}
-                  onMouseOver={(e) => onHover(e.target)}
-                  onMouseOut={(e) => removeHover(e.target)}
+                  {...eventHandlers}
                 >
-                  {isHovered &&
+                  {hovered &&
                   hoveredCard.current?.children[0]?.alt === title ? (
                     <CardMask>
                       <CardActions>

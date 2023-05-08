@@ -18,7 +18,7 @@ import {
 } from "./styles";
 import { useHover } from "../../helpers";
 
-const ProductsContent = () => {
+const BrandsContent = () => {
   const cardsRef = useRef([]);
   const hoveredCard = useRef(null);
   const [hovered, eventHandlers] = useHover();
@@ -61,4 +61,4 @@ const ProductsContent = () => {
   );
 };
 
-export default ProductsContent;
+export default BrandsContent;

@@ -9,6 +9,7 @@ const Error = lazy(() => import("../../pages/404"));
 const Contact = lazy(() => import("../../pages/Contact"));
 const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
+const Brands = lazy(() => import("../../pages/Brands"));
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/brand" element={<Brands />} />
           <Route path="/*" element={<Error />} />
         </Routes>
       </Suspense>
