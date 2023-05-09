@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import {
   FooterNavContainer,
   LinksContainer,
@@ -7,8 +9,10 @@ import {
   LinkButton,
 } from "./styles";
 import { navLinks } from "../../features/Constants";
+import { PopupContext } from "../../features/Context";
 
 const FooterNav = () => {
+  const { setOpenPopup } = useContext(PopupContext);
   return (
     <FooterNavContainer>
       <LinksContainer>
@@ -17,7 +21,9 @@ const FooterNav = () => {
             return (
               <ListItem key={id}>
                 {isButton === true ? (
-                  <LinkButton>{title}</LinkButton>
+                  <LinkButton onClick={() => setOpenPopup(true)}>
+                    {title}
+                  </LinkButton>
                 ) : (
                   <StyledLink to={path}>{title}</StyledLink>
                 )}

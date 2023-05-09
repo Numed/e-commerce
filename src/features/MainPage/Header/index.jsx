@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Pagination, Navigation as Nav, Parallax, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -19,8 +20,10 @@ import {
   LinkButton,
 } from "./styles";
 import { headerImages, navLinks } from "../../Constants";
+import { PopupContext } from "../../../features/Context";
 
 const MainPageHeader = () => {
+  const { setOpenPopup } = useContext(PopupContext);
   return (
     <>
       <HeaderContainer>
@@ -32,9 +35,13 @@ const MainPageHeader = () => {
                 return (
                   <ListItem key={id}>
                     {isButton === true ? (
-                      <LinkButton>{title}</LinkButton>
+                      <LinkButton onClick={() => setOpenPopup(true)}>
+                        {title}
+                      </LinkButton>
                     ) : (
-                      <StyledLink to={path}>{title}</StyledLink>
+                      <StyledLink to={path} onClick={() => setOpenPopup(false)}>
+                        {title}
+                      </StyledLink>
                     )}
                   </ListItem>
                 );
