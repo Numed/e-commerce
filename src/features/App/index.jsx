@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useRef } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Loader from "../../components/Loader";
@@ -11,6 +11,7 @@ const Contact = lazy(() => import("../../pages/Contact"));
 const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
 const Brands = lazy(() => import("../../pages/Brands"));
+const SinglePageCard = lazy(() => import("../../pages/SingleCardPage"));
 
 const App = () => {
   const [isOpenPopup, setOpenPopup] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/brand" element={<Brands />} />
+            <Route path="/:cardId" element={<SinglePageCard />} />
             <Route path="/*" element={<Error />} />
           </Routes>
         </Suspense>

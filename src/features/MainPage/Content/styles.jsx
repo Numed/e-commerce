@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Masonry from "react-responsive-masonry";
+import { Link } from "react-router-dom";
 
 export const SectionChapter = styled.span`
   font-family: "Karla";
@@ -65,13 +66,14 @@ export const CardActions = styled.div`
   }
 `;
 
-export const ActionButton = styled.a`
+export const ActionButton = styled(Link)`
   font-weight: 400;
   font-size: 14px;
   line-height: 23px;
   letter-spacing: 0.7px;
   text-transform: uppercase;
   color: #ffffff;
+  text-decoration: none;
 
   &::after {
     content: "";
