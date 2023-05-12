@@ -21,6 +21,7 @@ export const NavLinks = styled.ul`
   list-style: none;
   width: 20%;
   padding: 10px 15px;
+  z-index: 1113;
 `;
 
 export const ListItem = styled.li`
@@ -78,4 +79,16 @@ export const PopupMenu = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const PopupNavLinks = styled(NavLinks)`
+  width: 100%;
+`;
+
+export const PopupLinks = styled(StyledLink)`
+  color: #393939;
+  margin-top: 15px;
+  opacity: 0.8;
+  font-weight: 500;
+  font-size: 18px;
 `;

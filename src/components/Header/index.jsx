@@ -13,7 +13,7 @@ import { navLinks } from "../../features/Constants";
 import { PopupContext } from "../../features/Context";
 
 const Header = () => {
-  const { setOpenPopup } = useContext(PopupContext);
+  const { setOpenPopup, setClickedLink } = useContext(PopupContext);
   return (
     <HeaderContainer>
       <StyledLink to="/">
@@ -25,7 +25,11 @@ const Header = () => {
             return (
               <ListItem key={id}>
                 {isButton === true ? (
-                  <LinkButton onClick={() => setOpenPopup(true)}>
+                  <LinkButton
+                    onClick={(e) => (
+                      setOpenPopup(true), setClickedLink(e.target.textContent)
+                    )}
+                  >
                     {title}
                   </LinkButton>
                 ) : (

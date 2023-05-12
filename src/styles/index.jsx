@@ -83,4 +83,10 @@ export const BtnSubmit = styled.button`
   padding: 12px 22px;
   cursor: pointer;
   margin-top: 15px;
+  opacity: 0.8;
+  transition: all 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
 `;

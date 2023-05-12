@@ -12,7 +12,7 @@ import { navLinks } from "../../features/Constants";
 import { PopupContext } from "../../features/Context";
 
 const FooterNav = () => {
-  const { setOpenPopup } = useContext(PopupContext);
+  const { setOpenPopup, setClickedLink } = useContext(PopupContext);
   return (
     <FooterNavContainer>
       <LinksContainer>
@@ -21,7 +21,11 @@ const FooterNav = () => {
             return (
               <ListItem key={id}>
                 {isButton === true ? (
-                  <LinkButton onClick={() => setOpenPopup(true)}>
+                  <LinkButton
+                    onClick={(e) => (
+                      setOpenPopup(true), setClickedLink(e.target.textContent)
+                    )}
+                  >
                     {title}
                   </LinkButton>
                 ) : (

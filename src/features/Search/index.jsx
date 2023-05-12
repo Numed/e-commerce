@@ -3,6 +3,7 @@ import { InputInner, Input, SearchButton } from "./styles";
 
 const SearchInput = () => {
   const [value, setValue] = useState("");
+
   const onSubmit = () => {
     console.log(value);
   };

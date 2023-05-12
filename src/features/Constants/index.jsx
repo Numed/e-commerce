@@ -37,10 +37,17 @@ export const pathes = [
 export const navLinks = [
   { id: 1, title: "Products", path: "/products", isButton: false },
   { id: 2, title: "Brands", path: "/brands", isButton: true },
-  { id: 3, title: "Information", path: "/info", isButton: false },
+  { id: 3, title: "Information", path: "/info", isButton: true },
   { id: 4, title: "Search", path: "/search", isButton: true },
   { id: 5, title: "Cart", path: "/cart", isButton: true },
 ];
+
+export const infoPathes = [
+  { title: "About", path: "/about" },
+  { title: "Contact", path: "/contact" },
+];
+
+export const brandPathes = [{ title: "Mr & Mrs White", path: "/brands" }];
 
 export const headerImages = [
   {

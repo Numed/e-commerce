@@ -15,15 +15,18 @@ const SinglePageCard = lazy(() => import("../../pages/SingleCardPage"));
 
 const App = () => {
   const [isOpenPopup, setOpenPopup] = useState(false);
+  const [clickedLink, setClickedLink] = useState(null);
 
   return (
-    <PopupContext.Provider value={{ isOpenPopup, setOpenPopup }}>
+    <PopupContext.Provider
+      value={{ isOpenPopup, setOpenPopup, clickedLink, setClickedLink }}
+    >
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/info" element={<About />} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

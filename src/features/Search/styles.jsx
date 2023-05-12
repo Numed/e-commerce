@@ -7,6 +7,7 @@ export const InputInner = styled.div`
   align-items: flex-start;
   flex-direction: column;
   z-index: 11112;
+  order: -1;
 `;
 
 export const Input = styled.input`
