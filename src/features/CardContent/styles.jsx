@@ -115,6 +115,12 @@ export const BtnSubmit = styled.button`
   cursor: pointer;
   margin-top: 15px;
   min-width: 240px;
+  opacity: 0.9;
+  tranistion: all 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const CardPhotos = styled.div`
@@ -127,8 +133,8 @@ export const CardPhotos = styled.div`
 `;
 
 export const MainPhoto = styled.img`
-  max-width: 570px;
-  max-height: 560px;
+  min-width: 100%;
+  max-height: 400px;
 `;
 
 export const ImageBlocksInner = styled.div`
@@ -142,4 +148,6 @@ export const ImageBlock = styled.img`
   width: 150px;
   height: 150px;
   cursor: pointer;
+  padding: 10px;
+  object-fit: cover;
 `;

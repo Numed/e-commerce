@@ -18,12 +18,14 @@ import CartSection from "../../features/CartSection";
 
 const NavPopup = () => {
   const [content, setContent] = useState(null);
+  const [isShowingNav, setShowingNav] = useState(true);
 
   const { isOpenPopup, setOpenPopup, clickedLink, setClickedLink } =
     useContext(PopupContext);
 
   useEffect(() => {
     updateContent();
+    // eslint-disable-next-line
   }, [clickedLink]);
 
   const updateContent = () => {
@@ -31,7 +33,14 @@ const NavPopup = () => {
       setContent(brandPathes);
     } else if (clickedLink === "Information") {
       setContent(infoPathes);
+    } else {
+      setContent(null);
     }
+  };
+
+  const ShowSearchSection = () => {
+    setShowingNav(false);
+    return <SearchInput />;
   };
 
   return (
@@ -46,36 +55,38 @@ const NavPopup = () => {
           : null
       }
     >
-      <NavLinks>
-        {navLinks.map(({ id, title, path, isButton }) => {
-          return (
-            <ListItem key={id} onClick={console.log("1")}>
-              {isButton === true ? (
-                <LinkButton
-                  className="link-button"
-                  onClick={(e) =>
-                    isOpenPopup
-                      ? setClickedLink(e.target.textContent)
-                      : setOpenPopup(true)
-                  }
-                >
-                  {title}
-                </LinkButton>
-              ) : (
-                <StyledLink
-                  className="styled-link"
-                  to={path}
-                  onClick={(e) => (
-                    setOpenPopup(false), setClickedLink(e.target.textContent)
-                  )}
-                >
-                  {title}
-                </StyledLink>
-              )}
-            </ListItem>
-          );
-        })}
-      </NavLinks>
+      {isShowingNav ? (
+        <NavLinks>
+          {navLinks.map(({ id, title, path, isButton }) => {
+            return (
+              <ListItem key={id}>
+                {isButton === true ? (
+                  <LinkButton
+                    className="link-button"
+                    onClick={(e) =>
+                      isOpenPopup
+                        ? setClickedLink(e.target.textContent)
+                        : setOpenPopup(true)
+                    }
+                  >
+                    {title}
+                  </LinkButton>
+                ) : (
+                  <StyledLink
+                    className="styled-link"
+                    to={path}
+                    onClick={(e) => (
+                      setOpenPopup(false), setClickedLink(e.target.textContent)
+                    )}
+                  >
+                    {title}
+                  </StyledLink>
+                )}
+              </ListItem>
+            );
+          })}
+        </NavLinks>
+      ) : null}
       {content !== null ? (
         <PopupMenu>
           <PopupNavLinks>
@@ -93,7 +104,7 @@ const NavPopup = () => {
           <CartSection />
         </PopupMenu>
       ) : (
-        <SearchInput />
+        <ShowSearchSection />
       )}
     </SectionContainer>
   );

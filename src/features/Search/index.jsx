@@ -13,6 +13,7 @@ const SearchInput = () => {
       <Input
         className="search-input"
         type="search"
+        value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="SEARCH THE STORY"
       />

@@ -4,6 +4,7 @@ export const CartInner = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
+  overflow-y: scroll;
 `;
 
 export const CartCurrencyTitle = styled.h4`
@@ -27,9 +28,12 @@ export const ItemInner = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-bottom: 1px solid #dadada;
-  padding-bottom: 40px;
+  padding: 40px 0;
   height: 100%;
-  overflow-y: scroll;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const ItemsImg = styled.img`
@@ -65,6 +69,7 @@ export const ItemCount = styled.h6`
 export const TotalContainter = styled.div`
   text-align: right;
   margin-top: 40px;
+  border-bottom: 1px solid #dadada;
 `;
 
 export const TotalTitle = styled.h3`
@@ -100,4 +105,14 @@ export const BtnSubmit = styled.button`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const EmptyTitle = styled.h3`
+  padding: 20px 0 0;
+  border-top: 1px solid #dadada;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 27px;
+  font-family: "Karla";
+  color: #6d6d6d;
 `;

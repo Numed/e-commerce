@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+
 import {
   SectionContainer,
   Select,
@@ -14,14 +17,49 @@ import {
   MainPhoto,
   Option,
 } from "./styles";
-
-import mainPhoto from "../../img/Cards/card1.png";
+import { productsList } from "../Constants";
+import img from "../../img/Products/product2.svg";
+import img2 from "../../img/Products/product3.svg";
+import img3 from "../../img/Products/product4.svg";
+import Spinner from "../../components/Spinner";
+import { CartContext } from "../../features/Context";
 
 const CardContent = () => {
+  const { cardId } = useParams();
+  const [cardInfo, setCardInfo] = useState({});
+  const [mainImg, setMainImg] = useState(null);
+  const [isAdding, setAdding] = useState(false);
+  const [count, setCount] = useState(1);
+
+  const { cartItem, setCartItem } = useContext(CartContext);
+
+  useEffect(() => {
+    setCardInfo(productsList.filter((el) => el.id === +cardId)[0]);
+    setMainImg(cardInfo.image);
+  }, [cardId, cardInfo]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItem));
+  }, [cartItem]);
+
+  const addToCart = () => {
+    setAdding(true);
+    setCartItem([
+      ...cartItem,
+      {
+        title: cardInfo.title,
+        img: cardInfo.image,
+        count,
+        price: cardInfo.price,
+      },
+    ]);
+    setAdding(false);
+  };
+
   return (
     <SectionContainer>
       <CardInfo>
-        <InfoPrice>$3,080.00</InfoPrice>
+        <InfoPrice>{cardInfo.price}</InfoPrice>
         <InfoDescription>
           Aenean sed ante finibus, iaculis sem nec, viverra ligula. Fusce semper
           posuere ipsum ut tincidunt. Aliquam in rutrum ligula. Aliquam ornare
@@ -41,16 +79,36 @@ const CardContent = () => {
         </InputContainer>
         <InputContainer>
           <Label>Quantity</Label>
-          <Input type="number" min="1" max="100" value="1" />
+          <Input
+            type="number"
+            min="1"
+            max="100"
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
+          />
         </InputContainer>
-        <BtnSubmit> Add to Cart</BtnSubmit>
+        <BtnSubmit disabled={isAdding} onClick={() => addToCart()}>
+          {isAdding ? <Spinner /> : null}Add to Cart
+        </BtnSubmit>
       </CardInfo>
       <CardPhotos>
-        <MainPhoto src={mainPhoto} alt="Main photo" />
+        <MainPhoto src={mainImg} alt="Main photo" />
         <ImageBlocksInner>
-          <ImageBlock src="" alt="Card image 1" />
-          <ImageBlock src="" alt="Card image 2" />
-          <ImageBlock src="" alt="Card image 3" />
+          <ImageBlock
+            src={img}
+            alt="Card image 1"
+            onClick={() => setMainImg(img)}
+          />
+          <ImageBlock
+            src={img2}
+            alt="Card image 2"
+            onClick={() => setMainImg(img2)}
+          />
+          <ImageBlock
+            src={img3}
+            alt="Card image 3"
+            onClick={() => setMainImg(img3)}
+          />
         </ImageBlocksInner>
       </CardPhotos>
     </SectionContainer>

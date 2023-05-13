@@ -8,6 +8,7 @@ export const InputInner = styled.div`
   flex-direction: column;
   z-index: 11112;
   order: -1;
+  padding: 0 100px;
 `;
 
 export const Input = styled.input`
