@@ -1,54 +1,20 @@
-import { useState } from "react";
-import { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry from "react-masonry-css";
 
 import { productsList } from "../Constants";
-import {
-  SectionContainer,
-  Card,
-  CardBrand,
-  CardPrice,
-  CardImg,
-  CardTextContainer,
-  CardTitle,
-  CardsSection,
-  StyledMasonry,
-  CardMask,
-  ActionButton,
-  CardActions,
-} from "./styles";
-import { useHover } from "../../helpers";
+import Pagination from "../PaginationSection";
+import { SectionContainer, CardsSection } from "./styles";
 
 const ProductsContent = () => {
-  const [products, setProducts] = useState([...productsList]);
-  const [isHovered, eventHandlers, hoveredCard] = useHover();
-
   return (
     <SectionContainer>
       <CardsSection>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
-          <StyledMasonry gutter="30px">
-            {products.map(({ id, image, title, brand, price, alt }) => {
-              return (
-                <Card key={id}>
-                  <CardMask {...eventHandlers}>
-                    {isHovered &&
-                    hoveredCard.current?.children[0]?.alt === title ? (
-                      <CardActions>
-                        <ActionButton>Choose option</ActionButton>
-                      </CardActions>
-                    ) : null}
-                    <CardImg src={image} alt={alt} />
-                  </CardMask>
-                  <CardTextContainer>
-                    <CardBrand>{brand}</CardBrand>
-                    <CardTitle>{title}</CardTitle>
-                    <CardPrice>{price}</CardPrice>
-                  </CardTextContainer>
-                </Card>
-              );
-            })}
-          </StyledMasonry>
-        </ResponsiveMasonry>
+        <Masonry
+          breakpointCols={{ default: 4, 1100: 3, 700: 2, 500: 1 }}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          <Pagination itemsPerPage={16} list={productsList} />
+        </Masonry>
       </CardsSection>
     </SectionContainer>
   );

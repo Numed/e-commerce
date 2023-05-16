@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Masonry from "react-responsive-masonry";
 import { Link } from "react-router-dom";
 
 export const SectionChapter = styled.span`
@@ -19,21 +18,6 @@ export const CardsSection = styled.section`
   flex-direction: column;
   padding: 0 120px;
   margin-bottom: 40px;
-`;
-
-export const StyledMasonry = styled(Masonry)`
-  event-pointer: none;
-  & > div {
-    gap: 120px !important;
-
-    &:nth-child(even) > div {
-      height: 20%;
-    }
-
-    &:nth-child(odd) > div {
-      height: 25%;
-    }
-  }
 `;
 
 export const Card = styled.div`

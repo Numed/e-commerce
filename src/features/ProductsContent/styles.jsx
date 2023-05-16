@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import Masonry from "react-responsive-masonry";
 
 export const SectionContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 40px 0;
+  position: relative;
 `;
 
 export const CardsSection = styled.section`
@@ -16,21 +16,6 @@ export const CardsSection = styled.section`
   flex-direction: column;
   padding: 0 120px;
   margin-bottom: 40px;
-`;
-
-export const StyledMasonry = styled(Masonry)`
-  event-pointer: none;
-  & > div {
-    gap: 90px !important;
-
-    &:nth-child(even) > div {
-      height: 20%;
-    }
-
-    &:nth-child(odd) > div {
-      height: 25%;
-    }
-  }
 `;
 
 export const Card = styled.div`

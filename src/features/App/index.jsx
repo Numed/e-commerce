@@ -25,7 +25,7 @@ const App = () => {
       value={{ isOpenPopup, setOpenPopup, clickedLink, setClickedLink }}
     >
       <CartContext.Provider value={{ cartItem, setCartItem }}>
-        <Router>
+        <Router basename="/e-commerce">
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<Main />} />
@@ -34,7 +34,7 @@ const App = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/brand" element={<Brands />} />
+              <Route path="/brands" element={<Brands />} />
               <Route path="/:cardId" element={<SinglePageCard />} />
               <Route path="/*" element={<Error />} />
             </Routes>
