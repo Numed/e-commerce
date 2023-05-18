@@ -57,7 +57,7 @@ const CartSection = () => {
             <TotalTitle>Subtotal:</TotalTitle>
             <TotalPrice>${total}</TotalPrice>
           </TotalContainter>
-          <BtnSubmit>Checkout</BtnSubmit>
+          <BtnSubmit to="/checkout">Checkout</BtnSubmit>
         </>
       ) : (
         <EmptyTitle>Cart is empty</EmptyTitle>

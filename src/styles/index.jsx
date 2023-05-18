@@ -43,6 +43,10 @@ export const LabelInner = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 15px;
+
+  &.single-field {
+    width: 95%;
+  }
 `;
 
 export const FormInput = styled(Field)`
@@ -58,6 +62,10 @@ export const FormInput = styled(Field)`
   font-size: 14px;
   line-height: 17px;
   color: #6f6f6f;
+
+  .single-field > & {
+    width: 100%;
+  }
 `;
 
 export const InputError = styled.span`

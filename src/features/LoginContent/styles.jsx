@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SectionContainer = styled.div`
@@ -60,7 +61,7 @@ export const InfoItem = styled.li`
   margin-top: 10px;
 `;
 
-export const BtnSubmit = styled.button`
+export const BtnSubmit = styled(Link)`
   font-family: "Karla";
   font-weight: 400;
   font-size: 14px;
@@ -73,4 +74,12 @@ export const BtnSubmit = styled.button`
   padding: 12px 22px;
   cursor: pointer;
   margin-top: 15px;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
 `;

@@ -32,6 +32,8 @@ export const pathes = [
   { title: "Login", path: "/login" },
   { title: "Register", path: "/register" },
   { title: "Error", path: "/404" },
+  { title: "Admin Panel", path: "/admin" },
+  { title: "Checkout", path: "/checkout" },
 ];
 
 export const navLinks = [
@@ -48,6 +50,25 @@ export const infoPathes = [
 ];
 
 export const brandPathes = [{ title: "Mr & Mrs White", path: "/brands" }];
+
+export const ordersList = [
+  {
+    id: 1,
+    fullName: "Ruschinets Eugene",
+    items: "Pillow, Tiny table",
+    phone: "+380977865016",
+    address: "Ukraine, Zakarpatskya oblas't, Khust, st.Schevchenka 5, 90400",
+    total: "390$",
+  },
+  {
+    id: 2,
+    fullName: "Harry Poter",
+    items: "Stick, Chair",
+    phone: "+610568779083",
+    address: "USA, Hogvards state, Hogvards, st. Avadakedabra 3, 11111",
+    total: "550$",
+  },
+];
 
 export const headerImages = [
   {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const CartInner = styled.div`
   width: 100%;
@@ -85,8 +86,10 @@ export const TotalPrice = styled.h4`
   font-weight: 400;
 `;
 
-export const BtnSubmit = styled.button`
+export const BtnSubmit = styled(Link)`
   width: 100%;
+  display: block;
+  text-align: center;
   font-family: "Karla";
   font-weight: 400;
   font-size: 14px;
@@ -101,6 +104,7 @@ export const BtnSubmit = styled.button`
   margin-top: 15px;
   opacity: 0.8;
   transition: all 0.2s linear;
+  text-decoration: none;
 
   &:hover {
     opacity: 1;

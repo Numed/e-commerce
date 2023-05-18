@@ -10,6 +10,7 @@ import {
   InfoTitle,
   FormSection,
   FormTitle,
+  BtnSubmit,
 } from "./styles";
 
 import {
@@ -18,7 +19,6 @@ import {
   LabelInner,
   FormInput,
   FormLabel,
-  BtnSubmit,
 } from "../../styles";
 
 import { LoginSchema } from "./validationSchema";
@@ -81,7 +81,7 @@ const LoginContent = () => {
             <InfoItem>Track new orders</InfoItem>
             <InfoItem>Save items to your wish list</InfoItem>
           </InfoList>
-          <BtnSubmit>Create Account</BtnSubmit>
+          <BtnSubmit to="/register">Create Account</BtnSubmit>
         </InfoSection>
       </SectionInner>
     </SectionContainer>
