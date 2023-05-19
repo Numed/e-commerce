@@ -14,6 +14,7 @@ import {
   StyledTD,
 } from "./styles";
 import { ordersList } from "../Constants";
+import CreateCardContent from "../CreateCardContent";
 
 const AdminContent = () => {
   const [orders, setOrders] = useState(ordersList);
@@ -21,11 +22,11 @@ const AdminContent = () => {
   return (
     <SectionContainer>
       <SectionNav>
-        <SectionButton>
+        <SectionButton onClick={() => setIsOpenCards(false)}>
           <BiTable />
           Table with orders
         </SectionButton>
-        <SectionButton>
+        <SectionButton onClick={() => setIsOpenCards(true)}>
           <MdOutlineAddCard />
           Create Card
         </SectionButton>
@@ -41,24 +42,24 @@ const AdminContent = () => {
               <StyledTH>Address</StyledTH>
               <StyledTH>Price</StyledTH>
             </StyledTR>
-            {ordersList.map(
-              ({ id, items, address, phone, fullName, total }) => {
-                return (
-                  <StyledTbody key={id}>
-                    <StyledTR>
-                      <StyledTD>{id}</StyledTD>
-                      <StyledTD>{fullName}</StyledTD>
-                      <StyledTD className="items">{items}</StyledTD>
-                      <StyledTD>{phone}</StyledTD>
-                      <StyledTD>{address}</StyledTD>
-                      <StyledTD className="price">{total}</StyledTD>
-                    </StyledTR>
-                  </StyledTbody>
-                );
-              }
-            )}
+            {orders.map(({ id, items, address, phone, fullName, total }) => {
+              return (
+                <StyledTbody key={id}>
+                  <StyledTR>
+                    <StyledTD>{id}</StyledTD>
+                    <StyledTD>{fullName}</StyledTD>
+                    <StyledTD className="items">{items}</StyledTD>
+                    <StyledTD>{phone}</StyledTD>
+                    <StyledTD>{address}</StyledTD>
+                    <StyledTD className="price">{total}</StyledTD>
+                  </StyledTR>
+                </StyledTbody>
+              );
+            })}
           </StyledTable>
-        ) : null}
+        ) : (
+          <CreateCardContent />
+        )}
       </SectionInner>
     </SectionContainer>
   );
