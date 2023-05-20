@@ -8,10 +8,11 @@ export const SectionContainer = styled.section`
   align-items: center;
   flex-direction: column;
   margin: 40px 0;
+  padding: 0 120px;
 `;
 
 export const SectionTitle = styled.h3`
-  width: 50%;
+  width: 100%;
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
@@ -22,6 +23,73 @@ export const SectionTitle = styled.h3`
   border-bottom: 1px solid #dadada;
 `;
 
+export const SectionInner = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+`;
+
 export const FormSection = styled.div`
   width: 50%;
 `;
+
+export const DropzoneContainer = styled.div`
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 400px;
+`;
+
+export const DropzoneTitle = styled.h4`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  padding-bottom: 5px;
+  color: #393939;
+`;
+
+export const DropzoneInner = styled.div`
+  width: 100%:
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: ${(props) => getColor(props)};
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+`;
+
+export const DropzoneInput = styled.input`
+  height: 400px;
+`;
+
+export const DropzoneText = styled.p`
+  font-size: 16px;
+  text-decoration: none;
+  color: #dadada;
+`;
+
+const getColor = (props) => {
+  if (props.isDragAccept) {
+    return "#00e676";
+  }
+  if (props.isDragReject) {
+    return "#ff1744";
+  }
+  if (props.isFocused) {
+    return "#2196f3";
+  }
+  return "#eeeeee";
+};

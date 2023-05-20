@@ -40,6 +40,7 @@ export const FormTextarea = styled.textarea`
   border: 1px solid #dadada;
   border-radius: 3px;
   margin-right: 15px;
+  outline-color: #8abdf9;
   padding: 10px;
   width: 705px;
   height: 150px;

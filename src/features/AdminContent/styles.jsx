@@ -55,6 +55,7 @@ export const SectionInner = styled.div`
   aling-items: center;
   justify-content: center;
   height: auto;
+  padding: 0 40px;
 `;
 
 export const StyledTable = styled.table`
@@ -65,6 +66,7 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
+export const StyledThead = styled.thead``;
 export const StyledTbody = styled.tbody``;
 
 export const StyledTR = styled.tr`
@@ -93,6 +95,13 @@ export const StyledTD = styled.td`
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
+  height: 100px;
+
+  &.address {
+    max-width: 410px;
+    min-height: 100%;
+    line-height: 35px;
+  }
 
   &.items {
     color: #393939;
@@ -102,4 +111,14 @@ export const StyledTD = styled.td`
     color: #393939;
     font-weight: 600;
   }
+`;
+
+export const ShowMoreBtn = styled.button`
+  color: #393939;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: none;
+  cursor: pointer;
+  margin-left: 5px;
 `;
