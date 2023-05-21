@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import { mainCardsList } from "../../../features/Constants";
+import { productsList } from "../../../features/Constants";
 import {
   Card,
   CardBrand,
@@ -20,7 +20,7 @@ import { PopupContext } from "../../Context";
 import Masonry from "react-masonry-css";
 
 const Content = () => {
-  const [cardList, setCardList] = useState([...mainCardsList]);
+  const [cardList, setCardList] = useState([...productsList.slice(0, 9)]);
 
   const { isOpenPopup } = useContext(PopupContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();

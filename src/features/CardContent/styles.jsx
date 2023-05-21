@@ -135,19 +135,5 @@ export const CardPhotos = styled.div`
 export const MainPhoto = styled.img`
   min-width: 100%;
   max-height: 400px;
-`;
-
-export const ImageBlocksInner = styled.div`
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const ImageBlock = styled.img`
-  width: 150px;
-  height: 150px;
-  cursor: pointer;
-  padding: 10px;
-  object-fit: cover;
+  object-fit: contain;
 `;

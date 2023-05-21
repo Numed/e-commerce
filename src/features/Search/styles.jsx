@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoIosClose } from "react-icons/io";
 
 export const InputInner = styled.div`
   width: 100%;
@@ -20,6 +21,7 @@ export const Input = styled.input`
   background: 0 0;
   border: 0;
   outline: 0;
+  position: relative;
 `;
 
 export const SearchButton = styled.button`
@@ -32,4 +34,18 @@ export const SearchButton = styled.button`
   background-color: transparent;
   border: none;
   letter-spacing: 1.75px;
+`;
+
+export const CloseBtn = styled(IoIosClose)`
+  color: #fff;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 10%;
+  top: 45.5%;
+  cursor: pointer;
+
+  & > svg {
+    pointer-events: none;
+  }
 `;

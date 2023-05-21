@@ -14,24 +14,34 @@ import {
   ItemText,
   TotalContainter,
   EmptyTitle,
+  ItemMask,
+  MaskCount,
+  ButtonsContainer,
+  ActionButton,
+  CartActions,
 } from "./styles";
 import { CartContext } from "../Context";
+import { useHover, onAddItem, onRemoveItem } from "../../helpers";
 
 const CartSection = () => {
   const [total, setTotal] = useState(0);
   const { cartItem, setCartItem } = useContext(CartContext);
+  const [isHovered, eventHandlers, hoveredCard] = useHover();
 
   useEffect(() => {
     getTotalPrice();
   }, [cartItem]);
 
   const getTotalPrice = () => {
+    if (cartItem.length < 0) return;
     let counter = 0;
     const validPrice = cartItem.map((el) => {
-      return (counter = counter + +el.price.slice(1) * el.count);
+      return (counter = counter + +el.price.substring(1) * el.count);
     });
     setTotal(counter);
   };
+
+  console.log(hoveredCard);
 
   return (
     <CartInner>
@@ -42,7 +52,33 @@ const CartSection = () => {
             {cartItem.map(({ title, img, count, price }, i) => {
               return (
                 <ItemInner key={i}>
-                  <ItemsImg src={img} alt={title} />
+                  <ItemMask {...eventHandlers}>
+                    {isHovered &&
+                    hoveredCard.current?.alt === title ? (
+                      <CartActions>
+                        <MaskCount>{count}</MaskCount>
+                        <ButtonsContainer>
+                          <ActionButton
+                            className="action-btn"
+                            onClick={(e) =>
+                              onAddItem(e.target, cartItem, setCartItem)
+                            }
+                          >
+                            +
+                          </ActionButton>
+                          <ActionButton
+                            className="action-btn"
+                            onClick={(e) =>
+                              onRemoveItem(e.target, cartItem, setCartItem)
+                            }
+                          >
+                            -
+                          </ActionButton>
+                        </ButtonsContainer>
+                      </CartActions>
+                    ) : null}
+                    <ItemsImg src={img} alt={title} />
+                  </ItemMask>
                   <ItemText>
                     <ItemTitle>{title}</ItemTitle>
                     <ItemCount>

@@ -6,6 +6,8 @@ export const CartInner = styled.div`
   height: 100%;
   padding: 10px;
   overflow-y: scroll;
+  z-index: 1112;
+  position: relative;
 `;
 
 export const CartCurrencyTitle = styled.h4`
@@ -38,8 +40,8 @@ export const ItemInner = styled.div`
 `;
 
 export const ItemsImg = styled.img`
-  width: 75px;
-  height: 75px;
+  max-width: 142px;
+  max-height: 120px;
   object-fit: cover;
 `;
 
@@ -119,4 +121,60 @@ export const EmptyTitle = styled.h3`
   line-height: 27px;
   font-family: "Karla";
   color: #6d6d6d;
+`;
+
+export const ItemMask = styled.div`
+  position: relative;
+  transition: all 0.25s linear;
+  height: 100%;
+`;
+
+export const MaskCount = styled.h4`
+  width: 70px;
+  height: 70px;
+  font-size: 30px;
+  line-height: 70px;
+  color: #ccc;
+  text-align: center;
+  cursor: default;
+`;
+
+export const CartActions = styled.div`
+  background-color: none;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  transition: all 0.25s linear;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
+export const ActionButton = styled.button`
+  font-weight: 400;
+  font-size: 28px;
+  text-transform: uppercase;
+  padding: 12px;
+  color: #393939;
+  background: rgb(204, 204, 204);
+  text-decoration: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover::after {
+    opacity: 1;
+  }
 `;

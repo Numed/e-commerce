@@ -122,3 +122,17 @@ export const ShowMoreBtn = styled.button`
   cursor: pointer;
   margin-left: 5px;
 `;
+
+export const RemoveBtn = styled.button`
+  color: #d22b2b;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: none;
+  cursor: pointer;
+  margin-left: 5px;
+
+  & > svg {
+    pointer-events: none;
+  }
+`;

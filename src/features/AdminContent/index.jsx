@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { BiTable } from "react-icons/bi";
-import { MdOutlineAddCard } from "react-icons/md";
+import { MdOutlineAddCard, MdDelete } from "react-icons/md";
 
 import {
   SectionContainer,
@@ -14,6 +14,7 @@ import {
   StyledTD,
   ShowMoreBtn,
   StyledThead,
+  RemoveBtn,
 } from "./styles";
 import { ordersList } from "../Constants";
 import CreateCardContent from "../CreateCardContent";
@@ -32,6 +33,15 @@ const AdminContent = () => {
     });
     setActiveOrder(address[0].textContent.slice(0, -3));
     setIsShowingMore(!isShowingMore);
+  };
+
+  const onRemoveOrder = (target) => {
+    const address = addressRefs.current.filter((el) => {
+      return el.parentElement === target.parentElement.parentElement;
+    });
+    const id = +address[0].parentElement.firstElementChild.textContent;
+    const filterOrders = orders.filter((el) => el.id !== id);
+    setOrders(filterOrders);
   };
 
   return (
@@ -82,6 +92,11 @@ const AdminContent = () => {
                       </ShowMoreBtn>
                     </StyledTD>
                     <StyledTD className="price">{total}</StyledTD>
+                    <StyledTD>
+                      <RemoveBtn onClick={(e) => onRemoveOrder(e.target)}>
+                        <MdDelete />
+                      </RemoveBtn>
+                    </StyledTD>
                   </StyledTR>
                 </StyledTbody>
               );

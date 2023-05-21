@@ -38,23 +38,18 @@ const NavPopup = () => {
     }
   };
 
-  const ShowSearchSection = () => {
-    setShowingNav(false);
-    return <SearchInput />;
+  const onClosePopup = (e) => {
+    if (
+      (isOpenPopup && e.target.classList.contains("popup")) ||
+      (isOpenPopup && e.target.classList.contains("styled-link"))
+    ) {
+      setOpenPopup(false);
+      setClickedLink(null);
+    }
   };
 
   return (
-    <SectionContainer
-      onClick={(e) =>
-        isOpenPopup &&
-        !e.target.classList.contains("search-input") &&
-        !e.target.classList.contains("btn-search") &&
-        !e.target.classList.contains("styled-link") &&
-        !e.target.classList.contains("link-button")
-          ? (setOpenPopup(false), setClickedLink(null))
-          : null
-      }
-    >
+    <SectionContainer className="popup" onClick={(e) => onClosePopup(e)}>
       {isShowingNav ? (
         <NavLinks>
           {navLinks.map(({ id, title, path, isButton }) => {
@@ -88,11 +83,11 @@ const NavPopup = () => {
         </NavLinks>
       ) : null}
       {content !== null ? (
-        <PopupMenu>
+        <PopupMenu className="popup-menu">
           <PopupNavLinks>
             {content.map(({ path, title }, i) => {
               return (
-                <PopupLinks key={i} to={path}>
+                <PopupLinks key={i} to={path} className="styled-link">
                   {title}
                 </PopupLinks>
               );
@@ -104,7 +99,7 @@ const NavPopup = () => {
           <CartSection />
         </PopupMenu>
       ) : (
-        <ShowSearchSection />
+        <SearchInput setShowingNav={setShowingNav} />
       )}
     </SectionContainer>
   );

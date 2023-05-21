@@ -16,3 +16,44 @@ export const useHover = () => {
 
   return [hovered, eventHandlers, hoveredCard];
 };
+
+export const onAddItem = (target, cartItem, setCartItem) => {
+  const filterCart = cartItem.filter((el) => {
+    return (
+      el.title ===
+      target.parentElement.parentElement.parentElement.lastElementChild.alt
+    );
+  })[0];
+  const updateOrder = {
+    ...filterCart,
+    count: filterCart.count + 1,
+  };
+  setCartItem([
+    ...cartItem.map((el) => {
+      return el === filterCart ? (el = updateOrder) : el;
+    }),
+  ]);
+};
+
+export const onRemoveItem = (target, cartItem, setCartItem) => {
+  const filterCart = cartItem.filter((el) => {
+    return (
+      el.title ===
+      target.parentElement.parentElement.parentElement.lastElementChild.alt
+    );
+  })[0];
+
+  const updateOrder = {
+    ...filterCart,
+    count: filterCart.count - 1,
+  };
+
+  if (updateOrder.count === 0) {
+    return setCartItem([...cartItem.filter((el) => el !== filterCart)]);
+  }
+  setCartItem([
+    ...cartItem.map((el) => {
+      return el === filterCart ? (el = updateOrder) : el;
+    }),
+  ]);
+};

@@ -97,7 +97,7 @@ export const headerImages = [
   },
 ];
 
-export const mainCardsList = [
+export const productsList = [
   {
     id: 1,
     title: "Classic Tan Round",
@@ -170,11 +170,8 @@ export const mainCardsList = [
     image: card2,
     alt: "Beam Bed",
   },
-];
-
-export const productsList = [
   {
-    id: 1,
+    id: 10,
     title: "Classic Paneled Tan",
     brand: "Mr & Mrs White",
     price: "$190.00",
@@ -182,7 +179,7 @@ export const productsList = [
     alt: "Classic Paneled Tan",
   },
   {
-    id: 2,
+    id: 11,
     title: "Leather Navy",
     brand: "Mr & Mrs White",
     price: "$110.00",
@@ -190,7 +187,7 @@ export const productsList = [
     alt: "Leather Navy",
   },
   {
-    id: 3,
+    id: 12,
     title: "Linen Classic",
     brand: "Mr & Mrs White",
     price: "$60.00",
@@ -198,7 +195,7 @@ export const productsList = [
     alt: "Linen Classic",
   },
   {
-    id: 4,
+    id: 13,
     title: "Linen Round",
     brand: "Mr & Mrs White",
     price: "$195.00",
@@ -206,7 +203,7 @@ export const productsList = [
     alt: "Linen Round",
   },
   {
-    id: 5,
+    id: 14,
     title: "Classic Tan Round",
     brand: "Mr & Mrs White",
     price: "$230.00",
@@ -214,7 +211,7 @@ export const productsList = [
     alt: "Classic Tan Round",
   },
   {
-    id: 6,
+    id: 15,
     title: "Classic Black",
     brand: "Mr & Mrs White",
     price: "$170.00",
@@ -222,7 +219,7 @@ export const productsList = [
     alt: "Classic Black",
   },
   {
-    id: 7,
+    id: 16,
     title: "Grey Cowhide",
     brand: "Mr & Mrs White",
     price: "$100.00",
@@ -230,7 +227,7 @@ export const productsList = [
     alt: "Grey Cowhide",
   },
   {
-    id: 8,
+    id: 17,
     title: "Classic Tan",
     brand: "Mr & Mrs White",
     price: "$140.00",
@@ -238,7 +235,7 @@ export const productsList = [
     alt: "Classic Tan",
   },
   {
-    id: 9,
+    id: 18,
     title: "Oak Ladder",
     brand: "Mr & Mrs White",
     price: "$750.00",
@@ -246,7 +243,7 @@ export const productsList = [
     alt: "Oak Ladder",
   },
   {
-    id: 10,
+    id: 19,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -254,7 +251,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 11,
+    id: 20,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -262,7 +259,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 12,
+    id: 21,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -270,7 +267,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 13,
+    id: 22,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -278,7 +275,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 14,
+    id: 23,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -286,7 +283,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 15,
+    id: 24,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -294,7 +291,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 16,
+    id: 25,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",
@@ -302,7 +299,7 @@ export const productsList = [
     alt: "Beam Bed",
   },
   {
-    id: 17,
+    id: 26,
     title: "Beam Bed",
     brand: "Mr & Mrs White",
     price: "$2,300.00",

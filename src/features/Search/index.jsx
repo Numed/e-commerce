@@ -1,8 +1,15 @@
-import { useState } from "react";
-import { InputInner, Input, SearchButton } from "./styles";
+import { useState, useEffect, useContext } from "react";
 
-const SearchInput = () => {
+import { InputInner, Input, SearchButton, CloseBtn } from "./styles";
+import { PopupContext } from "../../features/Context";
+
+const SearchInput = ({ setShowingNav }) => {
   const [value, setValue] = useState("");
+  const { setOpenPopup } = useContext(PopupContext);
+
+  useEffect(() => {
+    setShowingNav(false);
+  }, []);
 
   const onSubmit = () => {
     console.log(value);
@@ -17,6 +24,7 @@ const SearchInput = () => {
         onChange={(e) => setValue(e.target.value)}
         placeholder="SEARCH THE STORY"
       />
+      <CloseBtn onClick={() => setOpenPopup(false)} />
       <SearchButton className="btn-search" onClick={onSubmit}>
         Search
       </SearchButton>

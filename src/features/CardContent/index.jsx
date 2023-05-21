@@ -18,9 +18,6 @@ import {
   Option,
 } from "./styles";
 import { productsList } from "../Constants";
-import img from "../../img/Products/product2.svg";
-import img2 from "../../img/Products/product3.svg";
-import img3 from "../../img/Products/product4.svg";
 import Spinner from "../../components/Spinner";
 import { CartContext } from "../../features/Context";
 
@@ -93,23 +90,6 @@ const CardContent = () => {
       </CardInfo>
       <CardPhotos>
         <MainPhoto src={mainImg} alt="Main photo" />
-        <ImageBlocksInner>
-          <ImageBlock
-            src={img}
-            alt="Card image 1"
-            onClick={() => setMainImg(img)}
-          />
-          <ImageBlock
-            src={img2}
-            alt="Card image 2"
-            onClick={() => setMainImg(img2)}
-          />
-          <ImageBlock
-            src={img3}
-            alt="Card image 3"
-            onClick={() => setMainImg(img3)}
-          />
-        </ImageBlocksInner>
       </CardPhotos>
     </SectionContainer>
   );
