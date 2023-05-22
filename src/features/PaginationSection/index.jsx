@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import Masonry from "react-masonry-css";
 
 import { useHover } from "../../helpers";
 import {
@@ -22,6 +23,12 @@ const Pagination = ({ itemsPerPage, list }) => {
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = list.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(list.length / itemsPerPage);
+  let counter = 0,
+    sliceCurentItems = [];
+  for (let i = counter; i < currentItems.length / 4; i++) {
+    sliceCurentItems[i] = [...currentItems.slice(counter, counter + 4)];
+    counter += 4;
+  }
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % list.length;
@@ -31,34 +38,44 @@ const Pagination = ({ itemsPerPage, list }) => {
   const Items = ({ currentItems }) => {
     return (
       <>
-        {currentItems &&
-          currentItems.map(({ id, image, title, brand, price, alt }) => {
-            return (
-              <Card key={id}>
-                <CardMask {...eventHandlers}>
-                  {isHovered &&
-                  hoveredCard.current?.children[0]?.alt === title ? (
-                    <CardActions>
-                      <ActionButton>Choose option</ActionButton>
-                    </CardActions>
-                  ) : null}
-                  <CardImg src={image} alt={alt} />
-                </CardMask>
-                <CardTextContainer>
-                  <CardBrand>{brand}</CardBrand>
-                  <CardTitle>{title}</CardTitle>
-                  <CardPrice>{price}</CardPrice>
-                </CardTextContainer>
-              </Card>
-            );
-          })}
+        <div className="my-masonry-grid_column">
+          {currentItems &&
+            currentItems.map(({ id, image, title, brand, price, alt }) => {
+              return (
+                <Card key={id}>
+                  <CardMask {...eventHandlers}>
+                    {isHovered &&
+                    hoveredCard.current?.children[0]?.alt === title ? (
+                      <CardActions>
+                        <ActionButton>Choose option</ActionButton>
+                      </CardActions>
+                    ) : null}
+                    <CardImg src={image} alt={alt} />
+                  </CardMask>
+                  <CardTextContainer>
+                    <CardBrand>{brand}</CardBrand>
+                    <CardTitle>{title}</CardTitle>
+                    <CardPrice>{price}</CardPrice>
+                  </CardTextContainer>
+                </Card>
+              );
+            })}
+        </div>
       </>
     );
   };
 
   return (
     <>
-      <Items currentItems={currentItems} />
+      <Masonry
+        breakpointCols={{ default: 4, 1100: 3, 700: 2, 500: 1 }}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {sliceCurentItems.map((el, i) => {
+          return <Items key={i} currentItems={el} />;
+        })}
+      </Masonry>
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next >"
