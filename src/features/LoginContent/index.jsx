@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 
 import {
   SectionContainer,
@@ -11,8 +11,8 @@ import {
   FormSection,
   FormTitle,
   BtnSubmit,
+  BtnRegister,
 } from "./styles";
-
 import {
   InputError,
   InputContainer,
@@ -20,12 +20,21 @@ import {
   FormInput,
   FormLabel,
 } from "../../styles";
-
 import { LoginSchema } from "./validationSchema";
+import useRequestService from "../../service";
 
 const LoginContent = () => {
+  const { loginUser } = useRequestService();
   const onSubmit = (data) => {
-    console.log(data);
+    const loginData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    loginUser(loginData)
+      .then((el) => el.json())
+      .then((response) => console.log(response))
+      .catch((el) => console.log(el));
   };
 
   return (
@@ -41,31 +50,33 @@ const LoginContent = () => {
             }}
           >
             {({ errors, touched }) => (
-              <FormSection>
-                <InputContainer>
-                  <LabelInner>
-                    <FormLabel>
-                      Email Address <span>*</span>
-                    </FormLabel>
-                    {errors.email && touched.email ? (
-                      <InputError>{errors.email}</InputError>
-                    ) : null}
-                    <FormInput type="email" name="email" required />
-                  </LabelInner>
-                </InputContainer>
-                <InputContainer>
-                  <LabelInner>
-                    <FormLabel>
-                      Password <span>*</span>
-                    </FormLabel>
-                    {errors.password && touched.password ? (
-                      <InputError>{errors.password}</InputError>
-                    ) : null}
-                    <FormInput type="password" name="password" required />
-                  </LabelInner>
-                </InputContainer>
-                <BtnSubmit>Login</BtnSubmit>
-              </FormSection>
+              <Form>
+                <FormSection>
+                  <InputContainer>
+                    <LabelInner>
+                      <FormLabel>
+                        Email Address <span>*</span>
+                      </FormLabel>
+                      {errors.email && touched.email ? (
+                        <InputError>{errors.email}</InputError>
+                      ) : null}
+                      <FormInput type="email" name="email" required />
+                    </LabelInner>
+                  </InputContainer>
+                  <InputContainer>
+                    <LabelInner>
+                      <FormLabel>
+                        Password <span>*</span>
+                      </FormLabel>
+                      {errors.password && touched.password ? (
+                        <InputError>{errors.password}</InputError>
+                      ) : null}
+                      <FormInput type="password" name="password" required />
+                    </LabelInner>
+                  </InputContainer>
+                  <BtnSubmit type="submit">Login</BtnSubmit>
+                </FormSection>
+              </Form>
             )}
           </Formik>
         </FormSection>
@@ -81,7 +92,7 @@ const LoginContent = () => {
             <InfoItem>Track new orders</InfoItem>
             <InfoItem>Save items to your wish list</InfoItem>
           </InfoList>
-          <BtnSubmit to="/register">Create Account</BtnSubmit>
+          <BtnRegister to="/register">Create Account</BtnRegister>
         </InfoSection>
       </SectionInner>
     </SectionContainer>

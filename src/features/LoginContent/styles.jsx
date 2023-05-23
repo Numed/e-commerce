@@ -61,7 +61,30 @@ export const InfoItem = styled.li`
   margin-top: 10px;
 `;
 
-export const BtnSubmit = styled(Link)`
+export const BtnSubmit = styled.button`
+  font-family: "Karla";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  background: #393939;
+  border: 1px solid #393939;
+  border-radius: 3px;
+  color: #ffffff;
+  padding: 12px 22px;
+  cursor: pointer;
+  margin-top: 15px;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const BtnRegister = styled(Link)`
   font-family: "Karla";
   font-weight: 400;
   font-size: 14px;
