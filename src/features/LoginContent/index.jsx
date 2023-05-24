@@ -22,6 +22,7 @@ import {
 } from "../../styles";
 import { LoginSchema } from "./validationSchema";
 import useRequestService from "../../service";
+import { notifyError } from "../../helpers/notify";
 
 const LoginContent = () => {
   const { loginUser } = useRequestService();
@@ -32,9 +33,12 @@ const LoginContent = () => {
     };
 
     loginUser(loginData)
-      .then((el) => el.json())
-      .then((response) => console.log(response))
-      .catch((el) => console.log(el));
+      .then((el) => console.log(el))
+      .catch(onError);
+  };
+
+  const onError = (data) => {
+    notifyError(data);
   };
 
   return (

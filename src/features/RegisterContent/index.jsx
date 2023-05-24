@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 
 import {
@@ -22,6 +22,7 @@ import {
 
 import { RegisterSchema } from "./validationSchema";
 import useRequestService from "../../service";
+import { notifyError } from "../../helpers/notify";
 
 const RegisterContent = () => {
   const [country, setCountry] = useState("");
@@ -29,24 +30,33 @@ const RegisterContent = () => {
 
   const { registerUser } = useRequestService();
 
+  useEffect(() => {
+    console.log(country, state);
+  }, [country, state]);
+
   const onSubmit = (data) => {
     const registrationData = {
       email: data.email,
       password: data.password,
       country,
-      state,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      address: data.line1,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      address1: data.line1,
+      address2: data.line2,
+      company: data.company,
       city: data.city,
-      zip: data.zip,
+      state,
+      zip: data.zip.toString(),
       phone: data.phone,
     };
 
     registerUser(registrationData)
-      .then((el) => el.json())
-      .then((response) => console.log(response))
-      .catch((el) => console.log(el));
+      .then((el) => console.log(el))
+      .catch(onError);
+  };
+
+  const onError = (data) => {
+    notifyError(data);
   };
 
   return (
@@ -57,14 +67,12 @@ const RegisterContent = () => {
           email: "",
           password: "",
           confirm: "",
-          country: "",
           firstName: "",
           lastName: "",
           line1: "",
           line2: "",
           company: "",
           city: "",
-          state: "",
           zip: "",
           phone: "",
         }}
@@ -120,9 +128,6 @@ const RegisterContent = () => {
                       <FormLabel>
                         Country <span>*</span>
                       </FormLabel>
-                      {errors.country && touched.country ? (
-                        <InputError>{errors.country}</InputError>
-                      ) : null}
                       <StyledCountryDropdown
                         name="country"
                         value={country}
@@ -174,7 +179,7 @@ const RegisterContent = () => {
                       {errors.line2 && touched.line2 ? (
                         <InputError>{errors.line2}</InputError>
                       ) : null}
-                      <FormInput type="text" name="line2" required />
+                      <FormInput type="text" name="line2" />
                     </LabelInner>
                   </InputContainer>
                   <InputContainer>
@@ -183,7 +188,7 @@ const RegisterContent = () => {
                       {errors.company && touched.company ? (
                         <InputError>{errors.company}</InputError>
                       ) : null}
-                      <FormInput type="text" name="company" required />
+                      <FormInput type="text" name="company" />
                     </LabelInner>
                   </InputContainer>
                 </InputGroup>
@@ -204,9 +209,6 @@ const RegisterContent = () => {
                       <FormLabel>
                         State/Province <span>*</span>
                       </FormLabel>
-                      {errors.state && touched.state ? (
-                        <InputError>{errors.state}</InputError>
-                      ) : null}
                       <StyledRegionDropdown
                         country={country}
                         value={state}
@@ -230,7 +232,7 @@ const RegisterContent = () => {
                         type="number"
                         name="zip"
                         min="1"
-                        max="10000"
+                        max="100000"
                         required
                       />
                     </LabelInner>
