@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Formik, Form } from "formik";
 
 import {
@@ -22,17 +22,13 @@ import {
 
 import { RegisterSchema } from "./validationSchema";
 import useRequestService from "../../service";
-import { notifyError } from "../../helpers/notify";
+import { notifyError, notifySuccses } from "../../helpers/notify";
 
 const RegisterContent = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
 
   const { registerUser } = useRequestService();
-
-  useEffect(() => {
-    console.log(country, state);
-  }, [country, state]);
 
   const onSubmit = (data) => {
     const registrationData = {
@@ -50,9 +46,11 @@ const RegisterContent = () => {
       phone: data.phone,
     };
 
-    registerUser(registrationData)
-      .then((el) => console.log(el))
-      .catch(onError);
+    registerUser(registrationData).then(onResolve).catch(onError);
+  };
+
+  const onResolve = (data) => {
+    notifySuccses(data.message);
   };
 
   const onError = (data) => {

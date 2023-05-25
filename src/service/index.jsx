@@ -63,7 +63,16 @@ const useRequestService = () => {
     return response;
   };
 
+  const removeUser = async (id = 1) => {
+    const response = await request(
+      `${process.env.REACT_APP_FETCHBASE}/users/${id}`,
+      "DELETE"
+    );
+    return response;
+  };
+
   return {
+    removeUser,
     loginUser,
     registerUser,
     findUser,

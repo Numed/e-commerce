@@ -25,13 +25,14 @@ import useRequestService from "../../service";
 import { notifyError } from "../../helpers/notify";
 
 const LoginContent = () => {
-  const { loginUser } = useRequestService();
+  const { loginUser, removeUser } = useRequestService();
   const onSubmit = (data) => {
     const loginData = {
       email: data.email,
       password: data.password,
     };
 
+    // removeUser();
     loginUser(loginData)
       .then((el) => console.log(el))
       .catch(onError);
