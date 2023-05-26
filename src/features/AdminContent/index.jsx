@@ -15,9 +15,12 @@ import {
   ShowMoreBtn,
   StyledThead,
   RemoveBtn,
+  EmptyTitle,
 } from "./styles";
 import { ordersList } from "../Constants";
 import CreateCardContent from "../CreateCardContent";
+import useRequestService from "../../service";
+import { notifyError, notifySuccses } from "../../helpers/notify";
 
 const AdminContent = () => {
   const [orders, setOrders] = useState(ordersList);
@@ -25,6 +28,8 @@ const AdminContent = () => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [activeOrder, setActiveOrder] = useState(null);
   const addressRefs = useRef([]);
+
+  const { removeOrder } = useRequestService();
 
   const onRemoveShowing = (target) => {
     const targetValue = target.parentElement.textContent.slice(0, -3);
@@ -40,8 +45,19 @@ const AdminContent = () => {
       return el.parentElement === target.parentElement.parentElement;
     });
     const id = +address[0].parentElement.firstElementChild.textContent;
+    removeOrder(id)
+      .then((data) => onResolve(data, id))
+      .catch(onError);
+  };
+
+  const onResolve = (data, id) => {
     const filterOrders = orders.filter((el) => el.id !== id);
     setOrders(filterOrders);
+    notifySuccses(data.message);
+  };
+
+  const onError = (data) => {
+    notifyError(data);
   };
 
   return (
@@ -59,16 +75,20 @@ const AdminContent = () => {
       <SectionInner>
         {!isOpenCards ? (
           <StyledTable>
-            <StyledThead>
-              <StyledTR>
-                <StyledTH>Order number</StyledTH>
-                <StyledTH>Full Name</StyledTH>
-                <StyledTH>Items</StyledTH>
-                <StyledTH>Phone Number</StyledTH>
-                <StyledTH>Address</StyledTH>
-                <StyledTH>Price</StyledTH>
-              </StyledTR>
-            </StyledThead>
+            {orders.length > 0 ? (
+              <StyledThead>
+                <StyledTR>
+                  <StyledTH>Order number</StyledTH>
+                  <StyledTH>Full Name</StyledTH>
+                  <StyledTH>Items</StyledTH>
+                  <StyledTH>Phone Number</StyledTH>
+                  <StyledTH>Address</StyledTH>
+                  <StyledTH>Price</StyledTH>
+                </StyledTR>
+              </StyledThead>
+            ) : (
+              <EmptyTitle>The order list is empty yet.</EmptyTitle>
+            )}
             {orders.map(({ id, items, address, phone, fullName, total }) => {
               return (
                 <StyledTbody key={id}>

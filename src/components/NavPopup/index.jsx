@@ -36,6 +36,7 @@ const NavPopup = () => {
     } else {
       setContent(null);
     }
+    setShowingNav(true);
   };
 
   const onClosePopup = (e) => {

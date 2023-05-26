@@ -1,4 +1,6 @@
 import { Formik, Form } from "formik";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   SectionContainer,
@@ -23,19 +25,30 @@ import {
 import { LoginSchema } from "./validationSchema";
 import useRequestService from "../../service";
 import { notifyError } from "../../helpers/notify";
+import { LoginContext } from "../Context";
 
 const LoginContent = () => {
-  const { loginUser, removeUser } = useRequestService();
+  const navigate = useNavigate();
+  const { setUser } = useContext(LoginContext);
+  const { loginUser } = useRequestService();
   const onSubmit = (data) => {
     const loginData = {
       email: data.email,
       password: data.password,
     };
 
-    // removeUser();
-    loginUser(loginData)
-      .then((el) => console.log(el))
-      .catch(onError);
+    loginUser(loginData).then(onResolve).catch(onError);
+  };
+
+  const onResolve = (data) => {
+    console.log(data);
+    setUser({
+      userId: data.id,
+      email: data.email,
+      token: data.tokem,
+    });
+    localStorage.setItem("token", data.token);
+    return navigate("/products");
   };
 
   const onError = (data) => {
@@ -50,8 +63,9 @@ const LoginContent = () => {
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               onSubmit(values);
+              resetForm();
             }}
           >
             {({ errors, touched }) => (

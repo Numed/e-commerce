@@ -1,9 +1,13 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import jwt_decode from "jwt-decode";
 
 import Loader from "../../components/Loader";
 import { CartContext, PopupContext, LoginContext } from "../Context/index";
+import { notifyError } from "../../helpers/notify";
+import useRequestService from "../../service";
+
 const Main = lazy(() => import("../../pages/Main"));
 const Products = lazy(() => import("../../pages/Products"));
 const About = lazy(() => import("../../pages/About"));
@@ -23,6 +27,26 @@ const App = () => {
   const [cartItem, setCartItem] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+  const { findUser } = useRequestService();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) return;
+    const data = {
+      id: jwt_decode(localStorage.getItem("token")).user_id,
+    };
+    findUser(data).then(onReceive).catch(onError);
+    // eslint-disable-next-line
+  }, []);
+
+  const onReceive = (data) => {
+    setUser({
+      email: data.email,
+    });
+  };
+
+  const onError = (e) => {
+    notifyError(e);
+  };
 
   return (
     <LoginContext.Provider value={{ user, setUser }}>

@@ -75,8 +75,9 @@ const RegisterContent = () => {
           phone: "",
         }}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           onSubmit(values);
+          resetForm();
         }}
       >
         {({ errors, touched }) => (

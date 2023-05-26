@@ -41,8 +41,6 @@ const CartSection = () => {
     setTotal(counter);
   };
 
-  console.log(hoveredCard);
-
   return (
     <CartInner>
       <CartCurrencyTitle>Currency: USD</CartCurrencyTitle>
@@ -53,8 +51,7 @@ const CartSection = () => {
               return (
                 <ItemInner key={i}>
                   <ItemMask {...eventHandlers}>
-                    {isHovered &&
-                    hoveredCard.current?.alt === title ? (
+                    {isHovered && hoveredCard.current?.alt === title ? (
                       <CartActions>
                         <MaskCount>{count}</MaskCount>
                         <ButtonsContainer>

@@ -136,3 +136,13 @@ export const RemoveBtn = styled.button`
     pointer-events: none;
   }
 `;
+
+export const EmptyTitle = styled.h3`
+  padding: 20px 0 0;
+  margin-bottom: 5px;
+  font-size: 18px;
+  line-height: 27px;
+  font-family: "Karla";
+  color: #6d6d6d;
+  text-align: center;
+`;
