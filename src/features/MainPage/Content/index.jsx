@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 
-import { productsList } from "../../../features/Constants";
 import {
   Card,
   CardBrand,
@@ -16,11 +15,12 @@ import {
 } from "./styles";
 import { useHover } from "../../../helpers";
 import NavPopup from "../../../components/NavPopup";
-import { PopupContext } from "../../Context";
+import { PopupContext, ProductsContext } from "../../Context";
 import Masonry from "react-masonry-css";
 
 const Content = () => {
-  const [cardList, setCardList] = useState([...productsList.slice(0, 9)]);
+  const { products } = useContext(ProductsContext);
+  const [cardList, setCardList] = useState([...products.slice(0, 9)]);
 
   const { isOpenPopup } = useContext(PopupContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();
@@ -42,7 +42,9 @@ const Content = () => {
                   {isHovered &&
                   hoveredCard.current?.children[0]?.alt === title ? (
                     <CardActions>
-                      <ActionButton to={`/${id}`}>Choose option</ActionButton>
+                      <ActionButton to={`/products/${id}`}>
+                        Choose option
+                      </ActionButton>
                     </CardActions>
                   ) : null}
                   <CardImg src={image} alt={alt} />

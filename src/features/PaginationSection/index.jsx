@@ -47,7 +47,9 @@ const Pagination = ({ itemsPerPage, list }) => {
                     {isHovered &&
                     hoveredCard.current?.children[0]?.alt === title ? (
                       <CardActions>
-                        <ActionButton>Choose option</ActionButton>
+                        <ActionButton to={`/products/${id}`}>
+                          Choose option
+                        </ActionButton>
                       </CardActions>
                     ) : null}
                     <CardImg src={image} alt={alt} />

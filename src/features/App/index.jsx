@@ -4,9 +4,15 @@ import { ToastContainer } from "react-toastify";
 import jwt_decode from "jwt-decode";
 
 import Loader from "../../components/Loader";
-import { CartContext, PopupContext, LoginContext } from "../Context/index";
+import {
+  CartContext,
+  PopupContext,
+  LoginContext,
+  ProductsContext,
+} from "../Context/index";
 import { notifyError } from "../../helpers/notify";
 import useRequestService from "../../service";
+import { productsList } from "../Constants";
 
 const Main = lazy(() => import("../../pages/Main"));
 const Products = lazy(() => import("../../pages/Products"));
@@ -22,8 +28,10 @@ const Admin = lazy(() => import("../../pages/Admin"));
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [products, setProducts] = useState(productsList);
   const [isOpenPopup, setOpenPopup] = useState(false);
   const [clickedLink, setClickedLink] = useState(null);
+  const [isShowingNav, setShowingNav] = useState(true);
   const [cartItem, setCartItem] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -51,28 +59,40 @@ const App = () => {
   return (
     <LoginContext.Provider value={{ user, setUser }}>
       <PopupContext.Provider
-        value={{ isOpenPopup, setOpenPopup, clickedLink, setClickedLink }}
+        value={{
+          isOpenPopup,
+          setOpenPopup,
+          clickedLink,
+          setClickedLink,
+          isShowingNav,
+          setShowingNav,
+        }}
       >
-        <CartContext.Provider value={{ cartItem, setCartItem }}>
-          <Router basename="/e-commerce">
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/brands" element={<Brands />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/:cardId" element={<SinglePageCard />} />
-                <Route path="/*" element={<Error />} />
-              </Routes>
-            </Suspense>
-          </Router>
-          <ToastContainer theme="dark" />
-        </CartContext.Provider>
+        <ProductsContext.Provider value={{ products, setProducts }}>
+          <CartContext.Provider value={{ cartItem, setCartItem }}>
+            <Router basename="/e-commerce">
+              <Suspense fallback={<Loader />}>
+                <Routes>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/brands" element={<Brands />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route
+                    path="/products/:cardId"
+                    element={<SinglePageCard />}
+                  />
+                  <Route path="/*" element={<Error />} />
+                </Routes>
+              </Suspense>
+            </Router>
+            <ToastContainer theme="dark" />
+          </CartContext.Provider>
+        </ProductsContext.Provider>
       </PopupContext.Provider>
     </LoginContext.Provider>
   );

@@ -30,6 +30,7 @@ const CartSection = () => {
 
   useEffect(() => {
     getTotalPrice();
+    isEmptyCart();
   }, [cartItem]);
 
   const getTotalPrice = () => {
@@ -39,6 +40,12 @@ const CartSection = () => {
       return (counter = counter + +el.price.substring(1) * el.count);
     });
     setTotal(counter);
+  };
+
+  const isEmptyCart = () => {
+    if (cartItem.length === 0) {
+      localStorage.removeItem("cart");
+    }
   };
 
   return (

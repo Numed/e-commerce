@@ -24,7 +24,7 @@ import {
 } from "../../styles";
 import { LoginSchema } from "./validationSchema";
 import useRequestService from "../../service";
-import { notifyError } from "../../helpers/notify";
+import { notifyError, notifySuccses } from "../../helpers/notify";
 import { LoginContext } from "../Context";
 
 const LoginContent = () => {
@@ -48,7 +48,10 @@ const LoginContent = () => {
       token: data.tokem,
     });
     localStorage.setItem("token", data.token);
-    return navigate("/products");
+    notifySuccses("You successfully sign in!");
+    setTimeout(() => {
+      return navigate("/");
+    }, 2000);
   };
 
   const onError = (data) => {

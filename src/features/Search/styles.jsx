@@ -22,6 +22,13 @@ export const Input = styled.input`
   border: 0;
   outline: 0;
   position: relative;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
 `;
 
 export const SearchButton = styled.button`

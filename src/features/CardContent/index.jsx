@@ -5,8 +5,6 @@ import {
   SectionContainer,
   Select,
   BtnSubmit,
-  ImageBlock,
-  ImageBlocksInner,
   InfoDescription,
   InfoPrice,
   Input,
@@ -17,9 +15,8 @@ import {
   MainPhoto,
   Option,
 } from "./styles";
-import { productsList } from "../Constants";
 import Spinner from "../../components/Spinner";
-import { CartContext } from "../../features/Context";
+import { CartContext, ProductsContext } from "../../features/Context";
 
 const CardContent = () => {
   const { cardId } = useParams();
@@ -29,9 +26,9 @@ const CardContent = () => {
   const [count, setCount] = useState(1);
 
   const { cartItem, setCartItem } = useContext(CartContext);
-
+  const { products } = useContext(ProductsContext);
   useEffect(() => {
-    setCardInfo(productsList.filter((el) => el.id === +cardId)[0]);
+    setCardInfo(products.filter((el) => el.id === +cardId)[0]);
     setMainImg(cardInfo.image);
   }, [cardId, cardInfo]);
 

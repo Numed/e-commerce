@@ -1,18 +1,29 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { InputInner, Input, SearchButton, CloseBtn } from "./styles";
 import { PopupContext } from "../../features/Context";
+import { productsList } from "../Constants";
 
-const SearchInput = ({ setShowingNav }) => {
+const SearchInput = () => {
   const [value, setValue] = useState("");
-  const { setOpenPopup } = useContext(PopupContext);
+  const { setOpenPopup, setShowingNav } = useContext(PopupContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowingNav(false);
   }, []);
 
   const onSubmit = () => {
-    console.log(value);
+    const filterProducts = productsList.filter(
+      (el) => el.title.toLowerCase() === value.toLowerCase()
+    )[0];
+    if (filterProducts !== undefined) {
+      navigate(`/products/${filterProducts.id}`);
+    } else {
+      navigate("/error");
+    }
+    setOpenPopup(false);
   };
 
   return (
@@ -22,6 +33,7 @@ const SearchInput = ({ setShowingNav }) => {
         type="search"
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(event) => (event.key === "Enter" ? onSubmit() : null)}
         placeholder="SEARCH THE STORY"
       />
       <CloseBtn onClick={() => setOpenPopup(false)} />

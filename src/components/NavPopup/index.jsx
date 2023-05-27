@@ -11,17 +11,23 @@ import {
   PopupNavLinks,
 } from "./styles";
 import { navLinks } from "../../features/Constants";
-import { PopupContext } from "../../features/Context";
+import { PopupContext, LoginContext } from "../../features/Context";
 import { brandPathes, infoPathes } from "../../features/Constants";
 import SearchInput from "../../features/Search";
 import CartSection from "../../features/CartSection";
+import { notifySuccses } from "../../helpers/notify";
 
 const NavPopup = () => {
   const [content, setContent] = useState(null);
-  const [isShowingNav, setShowingNav] = useState(true);
-
-  const { isOpenPopup, setOpenPopup, clickedLink, setClickedLink } =
-    useContext(PopupContext);
+  const { user, setUser } = useContext(LoginContext);
+  const {
+    isOpenPopup,
+    setOpenPopup,
+    clickedLink,
+    setClickedLink,
+    setShowingNav,
+    isShowingNav,
+  } = useContext(PopupContext);
 
   useEffect(() => {
     updateContent();
@@ -47,6 +53,15 @@ const NavPopup = () => {
       setOpenPopup(false);
       setClickedLink(null);
     }
+  };
+  console.log(user);
+
+  const onSignOut = () => {
+    setUser({});
+    setOpenPopup(false);
+    setClickedLink(null);
+    localStorage.removeItem("token");
+    notifySuccses("You succsessfully sign out");
   };
 
   return (
@@ -81,6 +96,11 @@ const NavPopup = () => {
               </ListItem>
             );
           })}
+          {user.email !== undefined ? (
+            <ListItem>
+              <LinkButton onClick={() => onSignOut()}>Sign out</LinkButton>
+            </ListItem>
+          ) : null}
         </NavLinks>
       ) : null}
       {content !== null ? (
