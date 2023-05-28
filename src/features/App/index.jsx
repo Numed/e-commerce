@@ -48,7 +48,9 @@ const App = () => {
 
   const onReceive = (data) => {
     setUser({
+      userId: data.id,
       email: data.email,
+      token: data.tokem,
     });
   };
 

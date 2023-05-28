@@ -54,7 +54,6 @@ const NavPopup = () => {
       setClickedLink(null);
     }
   };
-  console.log(user);
 
   const onSignOut = () => {
     setUser({});

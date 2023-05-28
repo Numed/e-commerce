@@ -88,7 +88,7 @@ export const TotalPrice = styled.h4`
   font-weight: 400;
 `;
 
-export const BtnSubmit = styled(Link)`
+export const BtnSubmit = styled.button`
   width: 100%;
   display: block;
   text-align: center;
@@ -106,7 +106,6 @@ export const BtnSubmit = styled(Link)`
   margin-top: 15px;
   opacity: 0.8;
   transition: all 0.2s linear;
-  text-decoration: none;
 
   &:hover {
     opacity: 1;

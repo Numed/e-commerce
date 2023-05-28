@@ -30,6 +30,13 @@ const useRequestService = () => {
     return response;
   };
 
+  const getUserInfo = async (id) => {
+    const response = await request(
+      `${process.env.REACT_APP_FETCHBASE}/users/${id}`
+    );
+    return response;
+  };
+
   const createProduct = async (data) => {
     const response = await request(
       `${process.env.REACT_APP_FETCHTEMPLATE}/products`,
@@ -42,6 +49,13 @@ const useRequestService = () => {
   const getProducts = async () => {
     const response = await request(
       `${process.env.REACT_APP_FETCHTEMPLATE}/products`
+    );
+    return response;
+  };
+
+  const getOrders = async () => {
+    const response = await request(
+      `${process.env.REACT_APP_FETCHTEMPLATE}/orders`
     );
     return response;
   };
@@ -80,6 +94,8 @@ const useRequestService = () => {
     getProducts,
     createOrder,
     removeOrder,
+    getUserInfo,
+    getOrders,
   };
 };
 

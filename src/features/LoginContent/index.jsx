@@ -41,7 +41,6 @@ const LoginContent = () => {
   };
 
   const onResolve = (data) => {
-    console.log(data);
     setUser({
       userId: data.id,
       email: data.email,

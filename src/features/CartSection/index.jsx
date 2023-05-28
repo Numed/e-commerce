@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   CartInner,
@@ -20,13 +21,15 @@ import {
   ActionButton,
   CartActions,
 } from "./styles";
-import { CartContext } from "../Context";
+import { CartContext, PopupContext } from "../Context";
 import { useHover, onAddItem, onRemoveItem } from "../../helpers";
 
 const CartSection = () => {
   const [total, setTotal] = useState(0);
   const { cartItem, setCartItem } = useContext(CartContext);
+  const { setOpenPopup } = useContext(PopupContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTotalPrice();
@@ -36,8 +39,14 @@ const CartSection = () => {
   const getTotalPrice = () => {
     if (cartItem.length < 0) return;
     let counter = 0;
-    const validPrice = cartItem.map((el) => {
-      return (counter = counter + +el.price.substring(1) * el.count);
+    cartItem.forEach((el) => {
+      if (+el.price.substring(1).slice(0, -3).replaceAll(",", "") >= 1000) {
+        return (counter =
+          counter +
+          +el.price.substring(1).slice(0, -3).replaceAll(",", "") * el.count);
+      } else {
+        return (counter = counter + +el.price.substring(1) * el.count);
+      }
     });
     setTotal(counter);
   };
@@ -46,6 +55,11 @@ const CartSection = () => {
     if (cartItem.length === 0) {
       localStorage.removeItem("cart");
     }
+  };
+
+  const onClick = () => {
+    setOpenPopup(false);
+    return navigate("/checkout");
   };
 
   return (
@@ -97,7 +111,7 @@ const CartSection = () => {
             <TotalTitle>Subtotal:</TotalTitle>
             <TotalPrice>${total}</TotalPrice>
           </TotalContainter>
-          <BtnSubmit to="/checkout">Checkout</BtnSubmit>
+          <BtnSubmit onClick={() => onClick()}>Checkout</BtnSubmit>
         </>
       ) : (
         <EmptyTitle>Cart is empty</EmptyTitle>

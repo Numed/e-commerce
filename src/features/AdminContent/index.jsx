@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { BiTable } from "react-icons/bi";
 import { MdOutlineAddCard, MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 import {
   SectionContainer,
@@ -17,19 +18,29 @@ import {
   RemoveBtn,
   EmptyTitle,
 } from "./styles";
-import { ordersList } from "../Constants";
 import CreateCardContent from "../CreateCardContent";
 import useRequestService from "../../service";
 import { notifyError, notifySuccses } from "../../helpers/notify";
+import { LoginContext } from "../Context";
 
 const AdminContent = () => {
-  const [orders, setOrders] = useState(ordersList);
+  const [orders, setOrders] = useState({});
   const [isOpenCards, setIsOpenCards] = useState(false);
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [activeOrder, setActiveOrder] = useState(null);
   const addressRefs = useRef([]);
+  const { user } = useContext(LoginContext);
+  const { removeOrder, getOrders } = useRequestService();
+  const navigate = useNavigate();
 
-  const { removeOrder } = useRequestService();
+  useEffect(() => {
+    if (user.email !== undefined) {
+      getOrders().then(onReceive).catch(onError);
+    } else {
+      navigate("/login");
+      notifyError("You should sign in first.");
+    }
+  }, []);
 
   const onRemoveShowing = (target) => {
     const targetValue = target.parentElement.textContent.slice(0, -3);
@@ -56,9 +67,49 @@ const AdminContent = () => {
     notifySuccses(data.message);
   };
 
+  const onReceive = (orders) => {
+    setOrders(orders);
+  };
+
   const onError = (data) => {
     notifyError(data);
   };
+
+  const ViewContent = (orders) => {
+    orders.map(({ id, items, address, phone, fullName, total }) => {
+      return (
+        <StyledTbody key={id}>
+          <StyledTR>
+            <StyledTD>{id}</StyledTD>
+            <StyledTD>{fullName}</StyledTD>
+            <StyledTD className="items">{items}</StyledTD>
+            <StyledTD>{phone}</StyledTD>
+            <StyledTD
+              ref={(el) => (addressRefs.current[id] = el)}
+              className="address"
+            >
+              {isShowingMore && activeOrder === address.substring(0, 30)
+                ? address
+                : address.substring(0, 30)}
+              <ShowMoreBtn onClick={(e) => onRemoveShowing(e.target)}>
+                {isShowingMore && activeOrder === address.substring(0, 30)
+                  ? "Show less"
+                  : "..."}
+              </ShowMoreBtn>
+            </StyledTD>
+            <StyledTD className="price">{total}</StyledTD>
+            <StyledTD>
+              <RemoveBtn onClick={(e) => onRemoveOrder(e.target)}>
+                <MdDelete />
+              </RemoveBtn>
+            </StyledTD>
+          </StyledTR>
+        </StyledTbody>
+      );
+    });
+  };
+
+  const content = orders.length > 0 ? <ViewContent /> : null;
 
   return (
     <SectionContainer>
@@ -76,51 +127,22 @@ const AdminContent = () => {
         {!isOpenCards ? (
           <StyledTable>
             {orders.length > 0 ? (
-              <StyledThead>
-                <StyledTR>
-                  <StyledTH>Order number</StyledTH>
-                  <StyledTH>Full Name</StyledTH>
-                  <StyledTH>Items</StyledTH>
-                  <StyledTH>Phone Number</StyledTH>
-                  <StyledTH>Address</StyledTH>
-                  <StyledTH>Price</StyledTH>
-                </StyledTR>
-              </StyledThead>
+              <>
+                <StyledThead>
+                  <StyledTR>
+                    <StyledTH>Order number</StyledTH>
+                    <StyledTH>Full Name</StyledTH>
+                    <StyledTH>Items</StyledTH>
+                    <StyledTH>Phone Number</StyledTH>
+                    <StyledTH>Address</StyledTH>
+                    <StyledTH>Price</StyledTH>
+                  </StyledTR>
+                </StyledThead>
+                {content}
+              </>
             ) : (
               <EmptyTitle>The order list is empty yet.</EmptyTitle>
             )}
-            {orders.map(({ id, items, address, phone, fullName, total }) => {
-              return (
-                <StyledTbody key={id}>
-                  <StyledTR>
-                    <StyledTD>{id}</StyledTD>
-                    <StyledTD>{fullName}</StyledTD>
-                    <StyledTD className="items">{items}</StyledTD>
-                    <StyledTD>{phone}</StyledTD>
-                    <StyledTD
-                      ref={(el) => (addressRefs.current[id] = el)}
-                      className="address"
-                    >
-                      {isShowingMore && activeOrder === address.substring(0, 30)
-                        ? address
-                        : address.substring(0, 30)}
-                      <ShowMoreBtn onClick={(e) => onRemoveShowing(e.target)}>
-                        {isShowingMore &&
-                        activeOrder === address.substring(0, 30)
-                          ? "Show less"
-                          : "..."}
-                      </ShowMoreBtn>
-                    </StyledTD>
-                    <StyledTD className="price">{total}</StyledTD>
-                    <StyledTD>
-                      <RemoveBtn onClick={(e) => onRemoveOrder(e.target)}>
-                        <MdDelete />
-                      </RemoveBtn>
-                    </StyledTD>
-                  </StyledTR>
-                </StyledTbody>
-              );
-            })}
           </StyledTable>
         ) : (
           <CreateCardContent />
