@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from "react";
 
 import {
   SectionContainer,
-  Select,
   BtnSubmit,
   InfoDescription,
   InfoPrice,
@@ -13,7 +12,6 @@ import {
   InputContainer,
   Label,
   MainPhoto,
-  Option,
 } from "./styles";
 import Spinner from "../../components/Spinner";
 import { CartContext, ProductsContext } from "../../features/Context";
@@ -27,6 +25,7 @@ const CardContent = () => {
 
   const { cartItem, setCartItem } = useContext(CartContext);
   const { products } = useContext(ProductsContext);
+
   useEffect(() => {
     setCardInfo(products.filter((el) => el.id === +cardId)[0]);
     setMainImg(cardInfo.image);
@@ -63,14 +62,6 @@ const CardContent = () => {
           amet metus vel eros rhoncus consectetur lobortis eu eros. Pellentesque
           eleifend mattis convallis.
         </InfoDescription>
-        <InputContainer>
-          <Label>
-            Size <span>*</span>
-          </Label>
-          <Select>
-            <Option>200x200</Option>
-          </Select>
-        </InputContainer>
         <InputContainer>
           <Label>Quantity</Label>
           <Input

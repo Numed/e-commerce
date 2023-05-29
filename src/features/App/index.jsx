@@ -35,6 +35,7 @@ const App = () => {
   const [cartItem, setCartItem] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+  const [total, setTotal] = useState(0);
   const { findUser } = useRequestService();
 
   useEffect(() => {
@@ -71,7 +72,9 @@ const App = () => {
         }}
       >
         <ProductsContext.Provider value={{ products, setProducts }}>
-          <CartContext.Provider value={{ cartItem, setCartItem }}>
+          <CartContext.Provider
+            value={{ cartItem, setCartItem, total, setTotal }}
+          >
             <Router basename="/e-commerce">
               <Suspense fallback={<Loader />}>
                 <Routes>
@@ -92,7 +95,7 @@ const App = () => {
                 </Routes>
               </Suspense>
             </Router>
-            <ToastContainer theme="dark" />
+            <ToastContainer theme="light" />
           </CartContext.Provider>
         </ProductsContext.Provider>
       </PopupContext.Provider>

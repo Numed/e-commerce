@@ -67,32 +67,6 @@ export const Label = styled.label`
   }
 `;
 
-export const Select = styled.select`
-  background: #ffffff;
-  border: 1px solid #dadada;
-  border-radius: 3px;
-  padding: 11px;
-  font-family: "Karla";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #6f6f6f;
-  min-width: 240px;
-`;
-
-export const Option = styled.option`
-  background: #ffffff;
-  border: 1px solid #dadada;
-  border-radius: 3px;
-  padding: 11px;
-  font-family: "Karla";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #6f6f6f;
-  min-width: 240px;
-`;
-
 export const Input = styled.input`
   padding: 11px 26px 11px 11px;
   background: #ffffff;

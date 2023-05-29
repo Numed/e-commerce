@@ -53,6 +53,14 @@ const useRequestService = () => {
     return response;
   };
 
+  const removeProduct = async (id) => {
+    const response = await request(
+      `${process.env.REACT_APP_FETCHTEMPLATE}/products/${id}`,
+      "DELETE"
+    );
+    return response;
+  };
+
   const getOrders = async () => {
     const response = await request(
       `${process.env.REACT_APP_FETCHTEMPLATE}/orders`
@@ -77,21 +85,13 @@ const useRequestService = () => {
     return response;
   };
 
-  const removeUser = async (id = 1) => {
-    const response = await request(
-      `${process.env.REACT_APP_FETCHBASE}/users/${id}`,
-      "DELETE"
-    );
-    return response;
-  };
-
   return {
-    removeUser,
     loginUser,
     registerUser,
     findUser,
     createProduct,
     getProducts,
+    removeProduct,
     createOrder,
     removeOrder,
     getUserInfo,

@@ -96,9 +96,16 @@ const NavPopup = () => {
             );
           })}
           {user.email !== undefined ? (
-            <ListItem>
-              <LinkButton onClick={() => onSignOut()}>Sign out</LinkButton>
-            </ListItem>
+            <>
+              <ListItem>
+                <StyledLink className="styled-link" to="/admin">
+                  Admin Panel
+                </StyledLink>
+              </ListItem>
+              <ListItem>
+                <LinkButton onClick={() => onSignOut()}>Sign out</LinkButton>
+              </ListItem>
+            </>
           ) : null}
         </NavLinks>
       ) : null}

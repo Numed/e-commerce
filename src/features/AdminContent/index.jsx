@@ -62,9 +62,13 @@ const AdminContent = () => {
   };
 
   const onResolve = (data, id) => {
-    const filterOrders = orders.filter((el) => el.id !== id);
-    setOrders(filterOrders);
-    notifySuccses(data.message);
+    if (orders.length > 0) {
+      const filterOrders = orders.filter((el) => el.id !== id);
+      setOrders(filterOrders);
+      notifySuccses(data.message);
+    } else {
+      setOrders({});
+    }
   };
 
   const onReceive = (orders) => {
@@ -75,41 +79,45 @@ const AdminContent = () => {
     notifyError(data);
   };
 
-  const ViewContent = (orders) => {
-    orders.map(({ id, items, address, phone, fullName, total }) => {
-      return (
-        <StyledTbody key={id}>
-          <StyledTR>
-            <StyledTD>{id}</StyledTD>
-            <StyledTD>{fullName}</StyledTD>
-            <StyledTD className="items">{items}</StyledTD>
-            <StyledTD>{phone}</StyledTD>
-            <StyledTD
-              ref={(el) => (addressRefs.current[id] = el)}
-              className="address"
-            >
-              {isShowingMore && activeOrder === address.substring(0, 30)
-                ? address
-                : address.substring(0, 30)}
-              <ShowMoreBtn onClick={(e) => onRemoveShowing(e.target)}>
-                {isShowingMore && activeOrder === address.substring(0, 30)
-                  ? "Show less"
-                  : "..."}
-              </ShowMoreBtn>
-            </StyledTD>
-            <StyledTD className="price">{total}</StyledTD>
-            <StyledTD>
-              <RemoveBtn onClick={(e) => onRemoveOrder(e.target)}>
-                <MdDelete />
-              </RemoveBtn>
-            </StyledTD>
-          </StyledTR>
-        </StyledTbody>
-      );
-    });
+  const ViewContent = ({ orders }) => {
+    return (
+      <>
+        {orders.map(({ id, items, address, phone, fullName, totalPrice }) => {
+          return (
+            <StyledTbody key={id}>
+              <StyledTR>
+                <StyledTD>{id}</StyledTD>
+                <StyledTD>{fullName}</StyledTD>
+                <StyledTD className="items">{items}</StyledTD>
+                <StyledTD>{phone}</StyledTD>
+                <StyledTD
+                  ref={(el) => (addressRefs.current[id] = el)}
+                  className="address__field"
+                >
+                  {isShowingMore && activeOrder === address.substring(0, 30)
+                    ? address
+                    : address.substring(0, 30)}
+                  <ShowMoreBtn onClick={(e) => onRemoveShowing(e.target)}>
+                    {isShowingMore && activeOrder === address.substring(0, 30)
+                      ? "Show less"
+                      : "..."}
+                  </ShowMoreBtn>
+                </StyledTD>
+                <StyledTD className="price">{totalPrice + "$"}</StyledTD>
+                <StyledTD>
+                  <RemoveBtn onClick={(e) => onRemoveOrder(e.target)}>
+                    <MdDelete />
+                  </RemoveBtn>
+                </StyledTD>
+              </StyledTR>
+            </StyledTbody>
+          );
+        })}
+      </>
+    );
   };
 
-  const content = orders.length > 0 ? <ViewContent /> : null;
+  const content = orders.length > 0 ? <ViewContent orders={orders} /> : null;
 
   return (
     <SectionContainer>

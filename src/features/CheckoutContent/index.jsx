@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { Formik, Form, useFormik } from "formik";
+import { useState, useEffect, useContext } from "react";
+import { Formik, Form } from "formik";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 import {
   SectionContainer,
@@ -22,10 +23,12 @@ import {
 import { ShippingSchema } from "./validationSchema";
 import useRequestService from "../../service";
 import { notifyError, notifySuccses } from "../../helpers/notify";
+import { CartContext } from "../Context";
 
 const CheckoutContent = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
+  const [cartItemsTitle, setCartItemsTitle] = useState([]);
   const [userInfo, setUserInfo] = useState({
     first_name: "",
     last_name: "",
@@ -37,14 +40,42 @@ const CheckoutContent = () => {
     phone: "",
   });
   const { getUserInfo, createOrder } = useRequestService();
+  const { total } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     onCheckUser();
+    onGetTitles();
   }, []);
 
   const onSubmit = (data) => {
-    console.log("Enter");
-    createOrder(data).then(onCreate).catch(onError);
+    const orderData = {
+      items: cartItemsTitle.toString(),
+      address:
+        country +
+        ", " +
+        state +
+        ", " +
+        data.city +
+        ", " +
+        data.line1 +
+        ", " +
+        data.zip,
+      phone: data.phone,
+      fullName: data.firstName + " " + data.lastName,
+      totalPrice: total,
+    };
+    createOrder(orderData).then(onCreate).catch(onError);
+  };
+
+  const onGetTitles = () => {
+    if (localStorage.getItem("cart") !== null) {
+      const itemsTitle = JSON.parse(localStorage.getItem("cart"));
+      let titles = itemsTitle.map((el) => {
+        return el.title;
+      });
+      setCartItemsTitle(titles);
+    }
   };
 
   const onCheckUser = () => {
@@ -57,6 +88,10 @@ const CheckoutContent = () => {
 
   const onCreate = (data) => {
     notifySuccses(data.message);
+    localStorage.removeItem("cart");
+    setTimeout(() => {
+      return navigate("/");
+    }, 2000);
   };
 
   const onResolve = (data) => {
@@ -81,14 +116,12 @@ const CheckoutContent = () => {
       <SectionSubtitle>Shipping Address</SectionSubtitle>
       <Formik
         initialValues={{
-          country: "",
           firstName: "",
           lastName: "",
           line1: "",
           line2: "",
           company: "",
           city: "",
-          state: "",
           zip: "",
           phone: "",
         }}

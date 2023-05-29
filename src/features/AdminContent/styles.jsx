@@ -97,7 +97,7 @@ export const StyledTD = styled.td`
   border-bottom: 1px solid #ddd;
   height: 100px;
 
-  &.address {
+  &.address__field {
     max-width: 410px;
     min-height: 100%;
     line-height: 35px;

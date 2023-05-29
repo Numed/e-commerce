@@ -25,8 +25,7 @@ import { CartContext, PopupContext } from "../Context";
 import { useHover, onAddItem, onRemoveItem } from "../../helpers";
 
 const CartSection = () => {
-  const [total, setTotal] = useState(0);
-  const { cartItem, setCartItem } = useContext(CartContext);
+  const { cartItem, setCartItem, total, setTotal } = useContext(CartContext);
   const { setOpenPopup } = useContext(PopupContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();
   const navigate = useNavigate();

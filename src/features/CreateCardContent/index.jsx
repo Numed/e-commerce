@@ -71,7 +71,6 @@ const CreateCardContent = () => {
             title: "",
             brand: "",
             price: 0,
-            options: "",
             description: "",
           }}
           validationSchema={CreateCardSchema}
@@ -122,22 +121,6 @@ const CreateCardContent = () => {
                     </InputContainer>
                   </InputGroup>
                 </InputSection>
-                <InputContainer>
-                  <LabelInner className="single-field">
-                    <FormLabel>
-                      Options <span>*</span>
-                    </FormLabel>
-                    {errors.options && touched.options ? (
-                      <InputError>{errors.options}</InputError>
-                    ) : null}
-                    <FormInput
-                      type="text"
-                      name="options"
-                      required
-                      placeholder="For example: 200x200,300x30"
-                    />
-                  </LabelInner>
-                </InputContainer>
                 <InputContainer>
                   <LabelInner>
                     <FormLabel>Description</FormLabel>
