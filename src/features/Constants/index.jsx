@@ -16,7 +16,6 @@ import product1 from "../../img/Products/product1.svg";
 import product2 from "../../img/Products/product2.svg";
 import product3 from "../../img/Products/product3.svg";
 import product4 from "../../img/Products/product4.svg";
-import product5 from "../../img/Products/product5.svg";
 import product6 from "../../img/Products/product6.svg";
 import product7 from "../../img/Products/product7.svg";
 import product8 from "../../img/Products/product8.svg";
@@ -233,13 +232,5 @@ export const productsList = [
     price: "$140.00",
     image: product2,
     alt: "Classic Tan",
-  },
-  {
-    id: 18,
-    title: "Oak Ladder",
-    brand: "Mr & Mrs White",
-    price: "$750.00",
-    image: product5,
-    alt: "Oak Ladder",
   },
 ];

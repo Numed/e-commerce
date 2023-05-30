@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { BiTable } from "react-icons/bi";
-import { MdOutlineAddCard, MdDelete } from "react-icons/md";
+import { MdOutlineAddCard, MdDelete, MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,14 +18,15 @@ import {
   RemoveBtn,
   EmptyTitle,
 } from "./styles";
-import CreateCardContent from "../CreateCardContent";
+import CreateProductContent from "../CreateProductContent";
 import useRequestService from "../../service";
 import { notifyError, notifySuccses } from "../../helpers/notify";
 import { LoginContext } from "../Context";
+import ProductsAction from "../ProductsAction";
 
 const AdminContent = () => {
   const [orders, setOrders] = useState({});
-  const [isOpenCards, setIsOpenCards] = useState(false);
+  const [activeSection, setActiveSection] = useState("orders");
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [activeOrder, setActiveOrder] = useState(null);
   const addressRefs = useRef([]);
@@ -122,17 +123,21 @@ const AdminContent = () => {
   return (
     <SectionContainer>
       <SectionNav>
-        <SectionButton onClick={() => setIsOpenCards(false)}>
+        <SectionButton onClick={() => setActiveSection("orders")}>
           <BiTable />
           Table with orders
         </SectionButton>
-        <SectionButton onClick={() => setIsOpenCards(true)}>
+        <SectionButton onClick={() => setActiveSection("product")}>
           <MdOutlineAddCard />
-          Create Card
+          Create Product
+        </SectionButton>
+        <SectionButton onClick={() => setActiveSection("actions")}>
+          <MdEdit />
+          Products Actions
         </SectionButton>
       </SectionNav>
       <SectionInner>
-        {!isOpenCards ? (
+        {activeSection === "orders" ? (
           <StyledTable>
             {orders.length > 0 ? (
               <>
@@ -152,8 +157,10 @@ const AdminContent = () => {
               <EmptyTitle>The order list is empty yet.</EmptyTitle>
             )}
           </StyledTable>
+        ) : activeSection === "actions" ? (
+          <ProductsAction />
         ) : (
-          <CreateCardContent />
+          <CreateProductContent />
         )}
       </SectionInner>
     </SectionContainer>

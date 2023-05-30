@@ -95,7 +95,7 @@ const App = () => {
                 </Routes>
               </Suspense>
             </Router>
-            <ToastContainer theme="light" />
+            <ToastContainer theme="dark" />
           </CartContext.Provider>
         </ProductsContext.Provider>
       </PopupContext.Provider>

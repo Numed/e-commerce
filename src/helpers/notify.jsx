@@ -10,7 +10,7 @@ export const notifyUpdate = () => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: "dark",
   });
 };
 
@@ -23,7 +23,7 @@ export const notifySuccses = (data) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: "dark",
   });
 };
 
@@ -36,6 +36,6 @@ export const notifyError = (error) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: "dark",
   });
 };

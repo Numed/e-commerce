@@ -81,6 +81,36 @@ export const DropzoneText = styled.p`
   color: #dadada;
 `;
 
+export const ThumbsContainer = styled.aside`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 15px;
+`;
+
+export const Thumb = styled.div`
+  display: inline-flex;
+  border-radius: 20px;
+  border: 1px solid ##eaeaea;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+`;
+
+export const ThumbInner = styled.div`
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+`;
+
+export const ThumbImg = styled.img`
+  display: block;
+  width: auto;
+  height: 100%;
+`;
+
 const getColor = (props) => {
   if (props.isDragAccept) {
     return "#00e676";

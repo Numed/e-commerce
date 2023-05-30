@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const CartInner = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 1112;
   position: relative;
 `;
@@ -33,6 +32,7 @@ export const ItemInner = styled.div`
   border-bottom: 1px solid #dadada;
   padding: 40px 0;
   height: 100%;
+  min-width: 120px;
 
   &:last-child {
     border-bottom: none;

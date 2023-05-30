@@ -12,6 +12,10 @@ import {
   DropzoneInput,
   DropzoneText,
   SectionInner,
+  Thumb,
+  ThumbImg,
+  ThumbInner,
+  ThumbsContainer,
 } from "./styles";
 import {
   InputError,
@@ -26,7 +30,7 @@ import {
 import { CreateCardSchema } from "./validationSchema";
 import { FormikTextarea } from "../../helpers/formik";
 
-const CreateCardContent = () => {
+const CreateProductContent = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
 
   const onSubmit = (data) => {
@@ -53,7 +57,7 @@ const CreateCardContent = () => {
 
   return (
     <SectionContainer>
-      <SectionTitle>Create New Card</SectionTitle>
+      <SectionTitle>Create New Product</SectionTitle>
       <SectionInner>
         <DropzoneContainer className="container">
           <DropzoneTitle>Upload image</DropzoneTitle>
@@ -65,6 +69,18 @@ const CreateCardContent = () => {
               Drag&drop some files here, or click to select files
             </DropzoneText>
           </DropzoneInner>
+          <ThumbsContainer>
+            <Thumb>
+              <ThumbInner>
+                <ThumbImg
+                  src={uploadedImg}
+                  onLoad={() => {
+                    URL.revokeObjectURL(uploadedImg);
+                  }}
+                />
+              </ThumbInner>
+            </Thumb>
+          </ThumbsContainer>
         </DropzoneContainer>
         <Formik
           initialValues={{
@@ -130,7 +146,7 @@ const CreateCardContent = () => {
                     <FormikTextarea name="question" required />
                   </LabelInner>
                 </InputContainer>
-                <BtnSubmit>Create new card</BtnSubmit>
+                <BtnSubmit>Create new product</BtnSubmit>
               </FormSection>
             </Form>
           )}
@@ -140,4 +156,4 @@ const CreateCardContent = () => {
   );
 };
 
-export default CreateCardContent;
+export default CreateProductContent;

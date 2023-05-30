@@ -37,6 +37,13 @@ const useRequestService = () => {
     return response;
   };
 
+  const getProducts = async () => {
+    const response = await request(
+      `${process.env.REACT_APP_FETCHTEMPLATE}/products`
+    );
+    return response;
+  };
+
   const createProduct = async (data) => {
     const response = await request(
       `${process.env.REACT_APP_FETCHTEMPLATE}/products`,
@@ -46,9 +53,11 @@ const useRequestService = () => {
     return response;
   };
 
-  const getProducts = async () => {
+  const updateProduct = async (id, data) => {
     const response = await request(
-      `${process.env.REACT_APP_FETCHTEMPLATE}/products`
+      `${process.env.REACT_APP_FETCHTEMPLATE}/products/${id}`,
+      "PUT",
+      JSON.stringify(data)
     );
     return response;
   };
@@ -91,6 +100,7 @@ const useRequestService = () => {
     findUser,
     createProduct,
     getProducts,
+    updateProduct,
     removeProduct,
     createOrder,
     removeOrder,
