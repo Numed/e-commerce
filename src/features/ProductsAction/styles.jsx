@@ -110,6 +110,10 @@ export const Card = styled.div`
   padding: 0 20px 20px 20px;
   background: #fff;
   position: relative;
+
+  &.hide{
+    display: none;
+  }
 `;
 
 export const CardEdit = styled.button`

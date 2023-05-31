@@ -57,3 +57,19 @@ export const onRemoveItem = (target, cartItem, setCartItem) => {
     }),
   ]);
 };
+
+export const findItem = (searchTerm, itemsName) => {
+  if (searchTerm !== "") {
+    itemsName.forEach((e) => {
+      if (e.textContent.toLowerCase().search(searchTerm) === -1) {
+        e.parentElement.parentElement.classList.add("hide");
+      } else {
+        e.parentElement.parentElement.classList.remove("hide");
+      }
+    });
+  } else {
+    itemsName.forEach((e) => {
+      e.parentElement.parentElement.classList.remove("hide");
+    });
+  }
+};

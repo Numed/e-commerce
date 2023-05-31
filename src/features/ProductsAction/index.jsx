@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Masonry from "react-masonry-css";
 
@@ -23,29 +23,31 @@ import {
 } from "./styles";
 import { ProductsContext } from "../Context";
 import useRequestService from "../../service";
-import { useHover } from "../../helpers";
-import { notifySuccses, notifyError, notifyUpdate } from "../../helpers/notify";
+import { useHover, findItem } from "../../helpers";
+import { notifySuccses, notifyError } from "../../helpers/notify";
+import PopupUpdateProduct from "../PopupUpdateProduct";
 
 const ProductsAction = () => {
   const [searchValue, setSearchValue] = useState("");
-  const { products, setProducts } = useContext(ProductsContext);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const [idUpdatingProduct, setIdUpdatingProduct] = useState(null);
+  const itemsTitle = useRef([]);
+  const { products } = useContext(ProductsContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();
 
-  const { updateProduct, removeProduct } = useRequestService();
+  const { removeProduct } = useRequestService();
+
+  useEffect(() => {
+    findItem(searchValue, itemsTitle.current);
+  }, [searchValue]);
 
   const onRemove = (id) => {
     removeProduct(id).then(onRemoved).catch(onError);
   };
 
   const onUpdate = (id) => {
-    let updatedData = {};
-    updateProduct(id, updatedData).then(onResolve).onError(onError);
-  };
-
-  const onResolve = (data) => {
-    const filterProducts = products.filter((el) => el.id !== data.id);
-    setProducts([...filterProducts, data]);
-    notifyUpdate(data.message);
+    setIsOpenPopup(true);
+    setIdUpdatingProduct(id);
   };
 
   const onRemoved = (data) => {
@@ -96,7 +98,9 @@ const ProductsAction = () => {
                   </CardMask>
                   <CardTextContainer>
                     <CardBrand>{brand}</CardBrand>
-                    <CardTitle>{title}</CardTitle>
+                    <CardTitle ref={(el) => (itemsTitle.current[id] = el)}>
+                      {title}
+                    </CardTitle>
                     <CardPrice>{price}</CardPrice>
                   </CardTextContainer>
                 </Card>
@@ -105,6 +109,12 @@ const ProductsAction = () => {
           </Masonry>
         </CardsSections>
       </SectionInner>
+      {isOpenPopup ? (
+        <PopupUpdateProduct
+          id={idUpdatingProduct}
+          setId={setIdUpdatingProduct}
+        />
+      ) : null}
     </SectionContainer>
   );
 };

@@ -146,7 +146,7 @@ const CreateProductContent = () => {
                     <FormikTextarea name="question" required />
                   </LabelInner>
                 </InputContainer>
-                <BtnSubmit>Create new product</BtnSubmit>
+                <BtnSubmit type="submit">Create new product</BtnSubmit>
               </FormSection>
             </Form>
           )}
