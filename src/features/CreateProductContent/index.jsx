@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { Formik, Form } from "formik";
 import { useDropzone } from "react-dropzone";
 
@@ -29,12 +29,33 @@ import {
 } from "../../styles";
 import { CreateCardSchema } from "./validationSchema";
 import { FormikTextarea } from "../../helpers/formik";
+import useRequestService from "../../service";
+import { notifyError, notifySuccses } from "../../helpers/notify";
+import { ProductsContext } from "../Context";
 
 const CreateProductContent = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
+  const { createProduct } = useRequestService();
+  const { products, setProducts } = useContext(ProductsContext);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const productData = {
+      title: data.title,
+      brand: data.brand,
+      image: uploadedImg,
+      alt: data.title,
+      price: "$" + data.price,
+    };
+    createProduct(productData).then(onResolve).catch(onError);
+  };
+
+  const onResolve = (data) => {
+    setProducts([...products, data.product]);
+    notifySuccses(data.message);
+  };
+
+  const onError = (data) => {
+    notifyError(data.message);
   };
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -143,7 +164,7 @@ const CreateProductContent = () => {
                     {errors.description && touched.description ? (
                       <InputError>{errors.description}</InputError>
                     ) : null}
-                    <FormikTextarea name="question" required />
+                    <FormikTextarea name="description" required />
                   </LabelInner>
                 </InputContainer>
                 <BtnSubmit type="submit">Create new product</BtnSubmit>

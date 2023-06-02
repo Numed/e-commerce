@@ -49,7 +49,7 @@ const LoginContent = () => {
     localStorage.setItem("token", data.token);
     notifySuccses("You successfully sign in!");
     setTimeout(() => {
-      return navigate("/");
+      return navigate("/admin");
     }, 2000);
   };
 

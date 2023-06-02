@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { InputInner, Input, SearchButton, CloseBtn } from "./styles";
-import { PopupContext } from "../../features/Context";
-import { productsList } from "../Constants";
+import { PopupContext, ProductsContext } from "../../features/Context";
 
 const SearchInput = () => {
   const [value, setValue] = useState("");
   const { setOpenPopup, setShowingNav } = useContext(PopupContext);
+  const { products } = useContext(ProductsContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const SearchInput = () => {
   }, []);
 
   const onSubmit = () => {
-    const filterProducts = productsList.filter(
+    const filterProducts = products.filter(
       (el) => el.title.toLowerCase() === value.toLowerCase()
     )[0];
     if (filterProducts !== undefined) {

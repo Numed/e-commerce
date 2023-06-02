@@ -12,7 +12,6 @@ import {
 } from "../Context/index";
 import { notifyError } from "../../helpers/notify";
 import useRequestService from "../../service";
-import { productsList } from "../Constants";
 
 const Main = lazy(() => import("../../pages/Main"));
 const Products = lazy(() => import("../../pages/Products"));
@@ -28,7 +27,7 @@ const Admin = lazy(() => import("../../pages/Admin"));
 
 const App = () => {
   const [user, setUser] = useState({});
-  const [products, setProducts] = useState(productsList);
+  const [products, setProducts] = useState([]);
   const [isOpenPopup, setOpenPopup] = useState(false);
   const [clickedLink, setClickedLink] = useState(null);
   const [isShowingNav, setShowingNav] = useState(true);
@@ -36,7 +35,7 @@ const App = () => {
     JSON.parse(localStorage.getItem("cart")) || []
   );
   const [total, setTotal] = useState(0);
-  const { findUser } = useRequestService();
+  const { findUser, getProducts } = useRequestService();
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) return;
@@ -46,6 +45,14 @@ const App = () => {
     findUser(data).then(onReceive).catch(onError);
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    getProducts().then(onResolve).catch(onError);
+  }, []);
+
+  const onResolve = (data) => {
+    setProducts(data);
+  };
 
   const onReceive = (data) => {
     setUser({

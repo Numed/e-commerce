@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Field } from "formik";
+import { Link } from "react-router-dom";
 
 export const InputSection = styled.div`
-  padding-bottom: 30px;
   border-bottom: 1px solid #dadada;
 `;
 
@@ -105,6 +105,7 @@ export const Card = styled.div`
   padding: 0 20px 20px 20px;
   background: #fff;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const CardMask = styled.div`
@@ -128,13 +129,14 @@ export const CardActions = styled.div`
   }
 `;
 
-export const ActionButton = styled.a`
+export const ActionButton = styled(Link)`
   font-weight: 400;
   font-size: 14px;
   line-height: 23px;
   letter-spacing: 0.7px;
   text-transform: uppercase;
   color: #ffffff;
+  text-decoration: none;
 
   &::after {
     content: "";

@@ -54,13 +54,15 @@ const CardContent = () => {
       <CardInfo>
         <InfoPrice>{cardInfo.price}</InfoPrice>
         <InfoDescription>
-          Aenean sed ante finibus, iaculis sem nec, viverra ligula. Fusce semper
-          posuere ipsum ut tincidunt. Aliquam in rutrum ligula. Aliquam ornare
-          risus enim, vitae posuere neque laoreet condimentum. Proin vitae
-          malesuada orci. Nullam quam ipsum, finibus ut erat sit amet, facilisis
-          porta est. Quisque sollicitudin leo eu massa ornare semper. Proin sit
-          amet metus vel eros rhoncus consectetur lobortis eu eros. Pellentesque
-          eleifend mattis convallis.
+          {cardInfo.description !== ""
+            ? cardInfo.description
+            : `Aenean sed ante finibus, iaculis sem nec, viverra ligula. Fusce semper
+    posuere ipsum ut tincidunt. Aliquam in rutrum ligula. Aliquam ornare
+    risus enim, vitae posuere neque laoreet condimentum. Proin vitae
+    malesuada orci. Nullam quam ipsum, finibus ut erat sit amet, facilisis
+    porta est. Quisque sollicitudin leo eu massa ornare semper. Proin sit
+    amet metus vel eros rhoncus consectetur lobortis eu eros. Pellentesque
+    eleifend mattis convallis.`}
         </InfoDescription>
         <InputContainer>
           <Label>Quantity</Label>

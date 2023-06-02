@@ -109,6 +109,7 @@ export const ThumbImg = styled.img`
   display: block;
   width: auto;
   height: 100%;
+  max-width: 150px;
 `;
 
 const getColor = (props) => {

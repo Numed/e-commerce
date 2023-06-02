@@ -32,8 +32,10 @@ const ProductsAction = () => {
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [idUpdatingProduct, setIdUpdatingProduct] = useState(null);
   const itemsTitle = useRef([]);
-  const { products } = useContext(ProductsContext);
+  const { products, setProducts } = useContext(ProductsContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();
+
+  console.log(hoveredCard);
 
   const { removeProduct } = useRequestService();
 
@@ -42,7 +44,9 @@ const ProductsAction = () => {
   }, [searchValue]);
 
   const onRemove = (id) => {
-    removeProduct(id).then(onRemoved).catch(onError);
+    removeProduct(id)
+      .then((el) => onRemoved(id, el))
+      .catch(onError);
   };
 
   const onUpdate = (id) => {
@@ -50,7 +54,9 @@ const ProductsAction = () => {
     setIdUpdatingProduct(id);
   };
 
-  const onRemoved = (data) => {
+  const onRemoved = (id, data) => {
+    const filterProducts = products.filter((el) => el.id !== id);
+    setProducts([...filterProducts]);
     notifySuccses(data.message);
   };
 
@@ -113,6 +119,7 @@ const ProductsAction = () => {
         <PopupUpdateProduct
           id={idUpdatingProduct}
           setId={setIdUpdatingProduct}
+          setIsOpenPopup={setIsOpenPopup}
         />
       ) : null}
     </SectionContainer>

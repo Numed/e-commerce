@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { IoIosClose } from "react-icons/io";
+import { Form } from "formik";
 
 export const SectionContainer = styled.div`
   width: 100%;
@@ -62,4 +64,22 @@ export const BtnSubmit = styled.button`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const CloseBtn = styled(IoIosClose)`
+  color: #393939;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 5%;
+  top: 5%;
+  cursor: pointer;
+
+  & > svg {
+    pointer-events: none;
+  }
+`;
+
+export const StyledForm = styled(Form)`
+  position: relative;
 `;

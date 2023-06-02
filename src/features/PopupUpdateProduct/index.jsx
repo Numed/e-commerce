@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 
 import {
   SectionContainer,
@@ -7,6 +7,8 @@ import {
   SectionInner,
   FormSection,
   BtnSubmit,
+  CloseBtn,
+  StyledForm,
 } from "./styles";
 import {
   InputError,
@@ -23,7 +25,7 @@ import useRequestService from "../../service";
 import { notifyError, notifyUpdate } from "../../helpers/notify";
 import { ProductsContext } from "../Context";
 
-const PopupUpdateProduct = ({ id, setId }) => {
+const PopupUpdateProduct = ({ id, setId, setIsOpenPopup }) => {
   const [productInfo, setProductInfo] = useState({
     title: "",
     brand: "",
@@ -38,28 +40,46 @@ const PopupUpdateProduct = ({ id, setId }) => {
   }, []);
 
   const onSubmit = (data) => {
-    updateProduct(id, data).then(onResolve).catch(onError);
+    const updateData = {
+      title: data.title,
+      brand: data.brand,
+      price: "$" + data.price,
+      description: data.description,
+      alt: data.title,
+    };
+    updateProduct(id, updateData).then(onResolve).catch(onError);
   };
 
   const onResolve = (data) => {
     const filterProducts = products.filter((el) => el.id !== data.id);
-    setProducts([...filterProducts, data]);
+    setProducts([...filterProducts, data.product]);
     notifyUpdate(data.message);
     setId(null);
+    setIsOpenPopup(false);
   };
 
   const onError = (data) => {
     notifyError(data.message);
   };
 
+  const getValidPrice = (price) => {
+    if (price <= 0) return;
+    if (+price.substring(1).slice(0, -3).replaceAll(",", "") >= 1000) {
+      return +price.substring(1).slice(0, -3).replaceAll(",", "");
+    } else {
+      return price.substring(1);
+    }
+  };
+
   return (
     <SectionContainer>
       <SectionInner>
         <Formik
+          enableReinitialize
           initialValues={{
             title: productInfo.title,
             brand: productInfo.brand,
-            price: productInfo.price,
+            price: getValidPrice(productInfo.price),
             description: productInfo.description,
           }}
           validationSchema={UpdateCardSchema}
@@ -69,8 +89,9 @@ const PopupUpdateProduct = ({ id, setId }) => {
           }}
         >
           {({ errors, touched }) => (
-            <Form>
+            <StyledForm>
               <SectionTitle>Update product</SectionTitle>
+              <CloseBtn onClick={() => setIsOpenPopup(false)} />
               <FormSection>
                 <InputSection>
                   <InputGroup>
@@ -117,12 +138,12 @@ const PopupUpdateProduct = ({ id, setId }) => {
                     {errors.description && touched.description ? (
                       <InputError>{errors.description}</InputError>
                     ) : null}
-                    <FormikTextarea name="question" required />
+                    <FormikTextarea name="description" required />
                   </LabelInner>
                 </InputContainer>
                 <BtnSubmit type="submit">Update product</BtnSubmit>
               </FormSection>
-            </Form>
+            </StyledForm>
           )}
         </Formik>
       </SectionInner>
