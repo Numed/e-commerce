@@ -11,8 +11,12 @@ import {
   PopupNavLinks,
 } from "./styles";
 import { navLinks } from "../../features/Constants";
-import { PopupContext, LoginContext } from "../../features/Context";
-import { brandPathes, infoPathes } from "../../features/Constants";
+import {
+  PopupContext,
+  LoginContext,
+  ProductsContext,
+} from "../../features/Context";
+import { infoPathes } from "../../features/Constants";
 import SearchInput from "../../features/Search";
 import CartSection from "../../features/CartSection";
 import { notifySuccses } from "../../helpers/notify";
@@ -20,6 +24,7 @@ import { notifySuccses } from "../../helpers/notify";
 const NavPopup = () => {
   const [content, setContent] = useState(null);
   const { user, setUser } = useContext(LoginContext);
+  const { brands } = useContext(ProductsContext);
   const {
     isOpenPopup,
     setOpenPopup,
@@ -36,7 +41,7 @@ const NavPopup = () => {
 
   const updateContent = () => {
     if (clickedLink === "Brands") {
-      setContent(brandPathes);
+      setContent(brands);
     } else if (clickedLink === "Information") {
       setContent(infoPathes);
     } else {

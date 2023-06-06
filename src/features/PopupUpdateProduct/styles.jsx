@@ -36,11 +36,19 @@ export const SectionInner = styled.div`
   & > form {
     background: #dadada;
     padding: 20px;
+
+    @media (max-width: 788px) {
+      width: 100%;
+    }
   }
 `;
 
 export const FormSection = styled.div`
   width: 50%;
+
+  @media (max-width: 788px) {
+    width: 100%;
+  }
 `;
 
 export const BtnSubmit = styled.button`

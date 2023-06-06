@@ -19,6 +19,9 @@ export const HeaderInner = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 150px;
+  @media (max-width: 788px) {
+    padding: 0 30px;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -27,6 +30,10 @@ export const Logo = styled(Link)`
   background: url(${logo}) no-repeat center;
   background-size: cover;
   text-decoration: none;
+
+  @media (max-width: 430px) {
+    transform: scale(0.75);
+  }
 `;
 
 export const Navigation = styled.nav`
@@ -44,6 +51,11 @@ export const ListItem = styled.li`
   text-transform: uppercase;
   margin-bottom: 5px;
   text-align: end;
+
+  @media (max-width: 430px) {
+    font-size: 1em;
+    font-weight: 700;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -71,6 +83,10 @@ export const LinkButton = styled.a`
 
 export const StyledSwiper = styled(Swiper)`
   height: 650px;
+
+  @media (max-width: 788px) {
+    height: 300px;
+  }
 `;
 
 export const StyledSlide = styled(SwiperSlide)`
@@ -78,11 +94,19 @@ export const StyledSlide = styled(SwiperSlide)`
     width: 100%;
     max-height: 450px;
     object-fit: cover;
+
+    @media (max-width: 788px) {
+      height: 300px;
+    }
   }
 `;
 
 export const SlideTextContainer = styled.div`
   margin: 40px 25px;
+
+  @media (max-width: 788px) {
+    height: 0;
+  }
 `;
 
 export const SlideTitle = styled.h3`

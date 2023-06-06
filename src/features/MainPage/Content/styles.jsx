@@ -8,6 +8,11 @@ export const SectionChapter = styled.span`
   line-height: 27px;
   color: #6f6f6f;
   margin: 0 0 5px 125px;
+
+  @media (max-width: 788px) {
+    display: inline-block;
+    padding: 20px 0;
+  }
 `;
 
 export const CardsSection = styled.section`
@@ -18,6 +23,14 @@ export const CardsSection = styled.section`
   flex-direction: column;
   padding: 0 120px;
   margin-bottom: 40px;
+
+  @media (max-width: 1025px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Card = styled.div`

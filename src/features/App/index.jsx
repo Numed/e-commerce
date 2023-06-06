@@ -12,6 +12,7 @@ import {
 } from "../Context/index";
 import { notifyError } from "../../helpers/notify";
 import useRequestService from "../../service";
+import { productsList, brandPathes } from "../Constants";
 
 const Main = lazy(() => import("../../pages/Main"));
 const Products = lazy(() => import("../../pages/Products"));
@@ -27,7 +28,8 @@ const Admin = lazy(() => import("../../pages/Admin"));
 
 const App = () => {
   const [user, setUser] = useState({});
-  const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState(brandPathes);
+  const [products, setProducts] = useState(productsList);
   const [isOpenPopup, setOpenPopup] = useState(false);
   const [clickedLink, setClickedLink] = useState(null);
   const [isShowingNav, setShowingNav] = useState(true);
@@ -48,7 +50,29 @@ const App = () => {
 
   useEffect(() => {
     getProducts().then(onResolve).catch(onError);
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    const checkAndPushUniqueElement = (element, array) => {
+      const isUnique = !array.some((item) => item.brand === element.brand);
+      if (isUnique) {
+        array.push(element);
+      }
+      return array;
+    };
+
+    const getBrands = products.reduce((brands, element) => {
+      return checkAndPushUniqueElement(element, brands);
+    }, []);
+
+    const filterElements = getBrands.map((el) => ({
+      title: el.brand,
+      path: `/brand/${el.brand}`,
+    }));
+
+    setBrands(filterElements);
+  }, [products]);
 
   const onResolve = (data) => {
     setProducts(data);
@@ -78,7 +102,9 @@ const App = () => {
           setShowingNav,
         }}
       >
-        <ProductsContext.Provider value={{ products, setProducts }}>
+        <ProductsContext.Provider
+          value={{ products, setProducts, brands, setBrands }}
+        >
           <CartContext.Provider
             value={{ cartItem, setCartItem, total, setTotal }}
           >
@@ -91,7 +117,7 @@ const App = () => {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/brands" element={<Brands />} />
+                  <Route path="/brand/:brandTitle" element={<Brands />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route

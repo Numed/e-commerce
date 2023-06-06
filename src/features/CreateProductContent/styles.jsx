@@ -9,6 +9,10 @@ export const SectionContainer = styled.section`
   flex-direction: column;
   margin: 40px 0;
   padding: 0 120px;
+
+  @media (max-width: 1024px) {
+    padding: 0;
+  }
 `;
 
 export const SectionTitle = styled.h3`
@@ -29,10 +33,19 @@ export const SectionInner = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 100%;
+
+  @media (max-width: 430px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
 `;
 
 export const FormSection = styled.div`
   width: 50%;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const DropzoneContainer = styled.div`
@@ -42,6 +55,12 @@ export const DropzoneContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   height: 400px;
+
+  @media (max-width: 430px) {
+    margin-right: 20px;
+    width: 100%;
+    height: 300px;
+  }
 `;
 
 export const DropzoneTitle = styled.h4`

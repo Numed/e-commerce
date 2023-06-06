@@ -48,7 +48,7 @@ export const infoPathes = [
   { title: "Contact", path: "/contact" },
 ];
 
-export const brandPathes = [{ title: "Mr & Mrs White", path: "/brands" }];
+export const brandPathes = [{ title: "Mr & Mrs White", path: "/brands/:brandTitle" }];
 
 export const headerImages = [
   {

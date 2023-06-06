@@ -7,6 +7,10 @@ export const SectionContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 430px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const CardInfo = styled.div`
@@ -16,6 +20,10 @@ export const CardInfo = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+
+  @media (max-width: 430px) {
+    width: 90%;
+  }
 `;
 
 export const InfoPrice = styled.h3`

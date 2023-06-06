@@ -9,6 +9,10 @@ export const SectionContainer = styled.section`
   align-items: center;
   flex-direction: column;
   margin: 40px 0;
+
+  @media (max-width: 430px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const SectionTitle = styled.h3`
@@ -21,10 +25,23 @@ export const SectionTitle = styled.h3`
   padding-bottom: 5px;
   color: #393939;
   border-bottom: 1px solid #dadada;
+
+  @media (max-width: 788px) {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 1em;
+  }
 `;
 
 export const FormSection = styled.div`
   width: 50%;
+
+  @media (max-width: 788px) {
+    width: 100%;
+  }
 `;
 
 export const StyledCountryDropdown = styled(CountryDropdown)`

@@ -17,6 +17,10 @@ export const SectionNav = styled.nav`
   background: #dadada;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 430px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const SectionButton = styled.button`

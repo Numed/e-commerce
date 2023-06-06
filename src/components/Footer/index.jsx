@@ -47,7 +47,7 @@ const Footer = () => {
             <FormSection>
               <FormTitle>Join our mailing list</FormTitle>
               <FormSubtitle>We promise to send only good things.</FormSubtitle>
-              <InputContainer>
+              <InputContainer className="footer-container">
                 <LabelInner>
                   <FormLabel>Email Address</FormLabel>
                   {errors.email && touched.email ? (

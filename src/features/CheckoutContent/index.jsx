@@ -29,7 +29,7 @@ const CheckoutContent = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [cartItemsTitle, setCartItemsTitle] = useState([]);
-  const [userInfo, setUserInfo] = useState({
+  const [setUserInfo] = useState({
     first_name: "",
     last_name: "",
     address1: "",
@@ -46,6 +46,7 @@ const CheckoutContent = () => {
   useEffect(() => {
     onCheckUser();
     onGetTitles();
+    // eslint-disable-next-line
   }, []);
 
   const onSubmit = (data) => {

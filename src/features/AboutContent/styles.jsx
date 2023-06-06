@@ -10,6 +10,14 @@ export const AboutContainer = styled.section`
   flex-direction: column;
   margin-top: 70px;
   padding: 0 175px;
+
+  @media (max-width: 788px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const AboutInner = styled.div`
@@ -27,6 +35,10 @@ export const AboutImage = styled.div`
   width: 100%;
   height: 500px;
   margin: 0 40px 40px 0;
+
+  @media (max-width: 430px) {
+    margin: 0;
+  }
 `;
 
 export const AboutTextContainer = styled.div`

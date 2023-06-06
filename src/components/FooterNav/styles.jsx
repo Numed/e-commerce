@@ -7,6 +7,10 @@ export const FooterNavContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 25px 175px;
+
+  @media (max-width: 1300px) {
+    padding: 25px;
+  }
 `;
 
 export const LinksContainer = styled.div`
@@ -16,6 +20,10 @@ export const LinksContainer = styled.div`
 export const NavList = styled.ul`
   list-style: none;
   display: flex;
+  @media (max-width: 330px) {
+    flex-wrap: wrap;
+    gap: 15px 0;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -36,6 +44,10 @@ export const StyledLink = styled(Link)`
   opacity: 0.9;
   transition: all 0.2s linear;
 
+  @media (max-width: 430px) {
+    font-size: 0.7em;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -51,6 +63,10 @@ export const LinkButton = styled.a`
   opacity: 0.9;
   transition: all 0.2s linear;
   cursor: pointer;
+
+  @media (max-width: 430px) {
+    font-size: 0.7em;
+  }
 
   &:hover {
     opacity: 1;

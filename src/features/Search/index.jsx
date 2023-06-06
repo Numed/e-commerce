@@ -12,6 +12,7 @@ const SearchInput = () => {
 
   useEffect(() => {
     setShowingNav(false);
+    // eslint-disable-next-line
   }, []);
 
   const onSubmit = () => {

@@ -29,6 +29,7 @@ const CardContent = () => {
   useEffect(() => {
     setCardInfo(products.filter((el) => el.id === +cardId)[0]);
     setMainImg(cardInfo.image);
+    // eslint-disable-next-line
   }, [cardId, cardInfo]);
 
   useEffect(() => {

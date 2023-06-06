@@ -25,6 +25,15 @@ export const SectionSubtitle = styled.h4`
 
 export const FormSection = styled.div`
   width: 50%;
+
+  @media (max-width: 788px) {
+    width: 100%;
+    padding: 0 60px;
+  }
+
+  @media (max-width: 788px) {
+    padding: 0 20px;
+  }
 `;
 
 export const StyledCountryDropdown = styled(CountryDropdown)`

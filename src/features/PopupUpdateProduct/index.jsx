@@ -37,6 +37,7 @@ const PopupUpdateProduct = ({ id, setId, setIsOpenPopup }) => {
 
   useEffect(() => {
     setProductInfo(products.filter((el) => el.id === id)[0]);
+    // eslint-disable-next-line
   }, []);
 
   const onSubmit = (data) => {

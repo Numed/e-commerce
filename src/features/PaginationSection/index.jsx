@@ -25,9 +25,16 @@ const Pagination = ({ itemsPerPage, list }) => {
   const pageCount = Math.ceil(list.length / itemsPerPage);
   let counter = 0,
     sliceCurentItems = [];
-  for (let i = counter; i < currentItems.length / 4; i++) {
-    sliceCurentItems[i] = [...currentItems.slice(counter, counter + 4)];
-    counter += 4;
+  if (currentItems.length > 4) {
+    for (let i = counter; i < currentItems.length / 4; i++) {
+      sliceCurentItems[i] = [...currentItems.slice(counter, counter + 4)];
+      counter += 4;
+    }
+  } else {
+    for (let i = counter; i < currentItems.length; i++) {
+      sliceCurentItems[i] = [...currentItems.slice(counter, counter + 1)];
+      counter += 1;
+    }
   }
 
   const handlePageClick = (event) => {

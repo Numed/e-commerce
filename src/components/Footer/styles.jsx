@@ -15,11 +15,24 @@ export const FooterDataContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1300px) {
+    justify-content: space-evenly;
+  }
+
+  @media (max-width: 430px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const FormSection = styled.div`
   width: 30%;
   height: auto;
+
+  @media (max-width: 430px) {
+    width: 100%;
+    padding-left: 20px;
+  }
 `;
 
 export const FormTitle = styled.h3`
@@ -32,6 +45,10 @@ export const FormTitle = styled.h3`
   text-transform: uppercase;
   color: #393939;
   margin-bottom: 25px;
+
+  @media (max-width: 788px) {
+    font-size: 1.05rem;
+  }
 `;
 
 export const FormSubtitle = styled.h4`
@@ -41,12 +58,22 @@ export const FormSubtitle = styled.h4`
   line-height: 27px;
   color: #6f6f6f;
   margin-bottom: 25px;
+
+  @media (max-width: 788px) {
+    font-size: 0.85rem;
+  }
 `;
 
 export const DataSection = styled.div`
   width: 20%;
   height: auto;
   margin-left: 30px;
+
+  @media (max-width: 430px) {
+    width: 25%;
+    margin-top: 20px;
+    margin-left: 0;
+  }
 `;
 
 export const AdressInner = styled.p`
@@ -58,6 +85,11 @@ export const AdressInner = styled.p`
   line-height: 27px;
   color: #6f6f6f;
   margin-bottom: 20px;
+
+  @media (max-width: 330px) {
+    min-width: 0;
+    min-height: 0;
+  }
 `;
 
 export const PhoneNumber = styled.a`
@@ -79,6 +111,15 @@ export const LinksSection = styled.div`
   width: 30%;
   height: auto;
   margin-left: 30px;
+
+  @media (max-width: 1300px) {
+    width: 20%;
+  }
+
+  @media (max-width: 430px) {
+    width: 35%;
+    margin-top: 20px;
+  }
 `;
 
 export const LinksNav = styled.ul`
@@ -132,5 +173,9 @@ export const CopyRights = styled.p`
     font-size: 15px;
     line-height: 24px;
     color: #393939;
+  }
+
+  @media (max-width: 1300px) {
+    padding-left: 20px;
   }
 `;

@@ -41,6 +41,7 @@ const AdminContent = () => {
       navigate("/login");
       notifyError("You should sign in first.");
     }
+    // eslint-disable-next-line
   }, []);
 
   const onRemoveShowing = (target) => {

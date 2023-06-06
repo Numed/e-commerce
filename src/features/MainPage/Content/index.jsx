@@ -20,7 +20,7 @@ import Masonry from "react-masonry-css";
 
 const Content = () => {
   const { products } = useContext(ProductsContext);
-  const [cardList, setCardList] = useState([...products.slice(0, 9)]);
+  const [cardList] = useState([...products.slice(0, 9)]);
 
   const { isOpenPopup } = useContext(PopupContext);
   const [isHovered, eventHandlers, hoveredCard] = useHover();

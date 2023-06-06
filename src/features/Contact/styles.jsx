@@ -9,6 +9,14 @@ export const SectionContainer = styled.div`
   flex-direction: column;
   margin: 50px 0;
   padding: 0 150px;
+
+  @media (max-width: 788px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const SectionInner = styled.div`
@@ -33,6 +41,14 @@ export const ContentText = styled.p`
 export const FormSection = styled.div`
   width: 30%;
   height: auto;
+
+  @media (max-width: 788px) {
+    width: 100%;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const FormTextarea = styled.textarea`
@@ -45,4 +61,16 @@ export const FormTextarea = styled.textarea`
   width: 705px;
   height: 150px;
   resize: vertical;
+
+  @media (max-width: 1025px) {
+    width: 100%;
+  }
+
+  @media (max-width: 788px) {
+    width: 100%;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;

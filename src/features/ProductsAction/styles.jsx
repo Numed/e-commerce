@@ -9,6 +9,10 @@ export const SectionContainer = styled.section`
   flex-direction: column;
   margin: 40px 0;
   padding: 0 120px;
+
+  @media (max-width: 788px) {
+    padding: 0;
+  }
 `;
 
 export const SectionTitle = styled.h3`
@@ -55,6 +59,10 @@ export const Input = styled.input`
   background: none;
   border: 0;
   outline: 0;
+
+  @media (max-width: 430px) {
+    padding: 10px;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -111,7 +119,7 @@ export const Card = styled.div`
   background: #fff;
   position: relative;
 
-  &.hide{
+  &.hide {
     display: none;
   }
 `;

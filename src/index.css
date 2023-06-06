@@ -99,3 +99,24 @@ body {
   border-radius: 8px;
   background: #393939;
 }
+
+@media (max-width: 788px) {
+  .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    height: 0;
+  }
+
+   .swiper-pagination{
+    display: none;
+  }
+
+  .swiper-button-next, .swiper-button-prev{
+    transform: scale(0);
+  }
+}
+
+@media(max-width: 430px){
+  .pagination{
+    bottom: -30px;
+    width: 100%;
+  }
+}

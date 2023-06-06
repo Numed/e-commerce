@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -33,6 +33,7 @@ const CartSection = () => {
   useEffect(() => {
     getTotalPrice();
     isEmptyCart();
+    // eslint-disable-next-line
   }, [cartItem]);
 
   const getTotalPrice = () => {

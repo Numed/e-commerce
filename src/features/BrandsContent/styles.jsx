@@ -15,6 +15,13 @@ export const CardsSection = styled.section`
   flex-direction: column;
   padding: 0 120px;
   margin-bottom: 40px;
+  @media (max-width: 788px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Card = styled.div`

@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 export const SectionContainer = styled.div`
   width: 305px;
   height: auto;
+
+  @media (max-width: 788px) {
+    display: none;
+  }
+
+  @media (max-width: 430px) {
+    display: none;
+  }
 `;
 
 export const SectionTitle = styled.h4`

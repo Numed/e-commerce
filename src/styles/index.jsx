@@ -12,6 +12,10 @@ export const InputGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+
+  @media (max-width: 430px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -47,6 +51,14 @@ export const LabelInner = styled.div`
   &.single-field {
     width: 95%;
   }
+
+  @media (max-width: 1300px) {
+    width: calc(100% - 25%);
+  }
+
+  @media (max-width: 788px) {
+    width: 95%;
+  }
 `;
 
 export const FormInput = styled(Field)`
@@ -64,6 +76,14 @@ export const FormInput = styled(Field)`
   color: #6f6f6f;
 
   .single-field > & {
+    width: 100%;
+  }
+
+  @media (max-width: 1300px) {
+    width: calc(100% - 5%);
+  }
+
+  @media (max-width: 788px) {
     width: 100%;
   }
 `;

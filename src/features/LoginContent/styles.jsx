@@ -8,6 +8,10 @@ export const SectionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 788px) {
+    padding: 0 20px;
+  }
 `;
 
 export const SectionInner = styled.div`
@@ -19,6 +23,12 @@ export const SectionInner = styled.div`
 
 export const FormSection = styled.div`
   width: 33.3%;
+  @media (max-width: 788px) {
+    width: 65%;
+  }
+  @media (max-width: 430px) {
+    width: 100%;
+  }
 `;
 
 export const FormTitle = styled.h3`
@@ -34,6 +44,9 @@ export const FormTitle = styled.h3`
 
 export const InfoSection = styled.div`
   width: 33.3%;
+  @media (max-width: 430px) {
+    display: none;
+  }
 `;
 
 export const InfoTitle = styled(FormTitle)``;

@@ -10,6 +10,13 @@ export const HeaderNavContainer = styled.div`
   padding: 25px 175px;
   border-bottom: 1px solid #dadada;
   border-top: 1px solid #dadada;
+  @media (max-width: 788px) {
+    padding: 25px 60px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 20px;
+  }
 `;
 
 export const Title = styled.h3`
@@ -20,6 +27,14 @@ export const Title = styled.h3`
   text-transform: uppercase;
 
   color: #393939;
+
+  @media (max-width: 788px) {
+    font-size: 1.25em;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 0.95em;
+  }
 `;
 
 export const Cranches = styled.div`

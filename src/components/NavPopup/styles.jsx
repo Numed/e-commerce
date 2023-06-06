@@ -22,6 +22,10 @@ export const NavLinks = styled.ul`
   width: 20%;
   padding: 10px 15px;
   z-index: 1113;
+
+  @media (max-width: 430px) {
+    width: 40%;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -30,6 +34,10 @@ export const ListItem = styled.li`
   text-transform: uppercase;
   margin-bottom: 5px;
   text-align: end;
+
+  @media (max-width: 788px) {
+    font-size: 0.95rem;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -64,6 +72,10 @@ export const PopupMenu = styled.div`
   opacity: 0;
   animation: animate 0.1s ease-in-out 1;
   animation-fill-mode: forwards;
+
+  @media (max-width: 430px) {
+    width: 50%;
+  }
 
   @keyframes animate {
     0% {

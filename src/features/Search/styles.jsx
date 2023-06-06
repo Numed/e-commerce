@@ -10,6 +10,10 @@ export const InputInner = styled.div`
   z-index: 11112;
   order: -1;
   padding: 0 100px;
+
+  @media (max-width: 430px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Input = styled.input`
@@ -22,6 +26,11 @@ export const Input = styled.input`
   border: 0;
   outline: 0;
   position: relative;
+
+  @media (max-width: 430px) {
+    padding: 10px;
+    font-size: 1.35em;
+  }
 
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration,
